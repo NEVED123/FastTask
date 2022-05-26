@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.MainMenuController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="442.0" prefWidth="1013.0">
+          <children>
+              <Label fx:id="label" layoutX="21.0" layoutY="53.0" minHeight="16" minWidth="69" text="To do" />
+            <FlowPane fx:id="todo" layoutX="21.0" layoutY="86.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="316.0" />
+            <FlowPane layoutX="269.0" layoutY="86.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="200.0" />
+            <FlowPane layoutX="518.0" layoutY="76.0" orientation="VERTICAL" prefHeight="354.0" prefWidth="200.0" />
+            <FlowPane layoutX="763.0" layoutY="72.0" orientation="VERTICAL" prefHeight="354.0" prefWidth="200.0" />
+            <Label layoutX="377.0" layoutY="51.0" text="Doing" />
+            <Label layoutX="620.0" layoutY="52.0" text="Done" />
+            <Label layoutX="828.0" layoutY="52.0" text="Today" />
+            <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#addTask" text="Add Task" />
+            <MenuBar layoutX="104.0" layoutY="14.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="Sort by">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Owners" />
+                        <MenuItem mnemonicParsing="false" text="Date" />
+                        <MenuItem mnemonicParsing="false" text="Urgency" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+          </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="5.0" layoutY="6.0" prefHeight="64.0" prefWidth="290.0">
+         <children>
+            <Button layoutX="253.0" layoutY="16.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="22.0" text="*" />
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="66.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="82.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="98.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="114.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="130.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="taskName" layoutX="92.0" layoutY="2.0" prefHeight="18.0" prefWidth="136.0" text="taskName" />
+            <Label fx:id="ownerLabel" layoutX="90.0" layoutY="15.0" prefHeight="18.0" prefWidth="120.0" text="ownerLabel" />
+            <Label fx:id="categoryLabel" layoutX="93.0" layoutY="28.0" prefHeight="18.0" prefWidth="134.0" text="categoryLabel" />
+            <Label fx:id="ddLabel" layoutX="90.0" layoutY="42.0" prefHeight="18.0" prefWidth="106.0" text="ddLabel" />
+            <Label layoutX="5.0" layoutY="1.0" text="Task:" />
+            <Label layoutX="5.0" layoutY="15.0" text="Owner:" />
+            <Label layoutX="4.0" layoutY="29.0" text="Category:" />
+            <Label layoutX="5.0" layoutY="43.0" text="Due Date:" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

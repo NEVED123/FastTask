@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.addTaskMenuController">
+    <children>
+      <AnchorPane id="AnchorPane" prefHeight="441.0" prefWidth="900.0">
+         <children>
+            <TextField fx:id="nameTaskField" layoutX="376.0" layoutY="112.0" prefHeight="26.0" prefWidth="147.0" promptText="Task Name">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <Blend />
+               </effect>
+            </TextField>
+            <TextField fx:id="ownerField" layoutX="376.0" layoutY="145.0" prefHeight="26.0" prefWidth="147.0" promptText="Owner" />
+            <TextField fx:id="categoryField" layoutX="376.0" layoutY="178.0" prefHeight="26.0" prefWidth="147.0" promptText="Category" />
+            <DatePicker fx:id="datePicker" layoutX="376.0" layoutY="214.0" prefHeight="26.0" prefWidth="147.0" promptText="Due Date" />
+            <ImageView fx:id="ratingone" fitHeight="26.0" fitWidth="28.0" layoutX="377.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="406.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="437.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="467.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RatingStar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="495.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@RatingStar.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="finalizeTaskButton" layoutX="428.0" layoutY="304.0" mnemonicParsing="false" onAction="#createTask" text="Done" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
