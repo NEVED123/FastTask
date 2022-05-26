@@ -41,7 +41,7 @@ public class MainMenuController {
         
         main.tasks.add(new Task(taskName, owner, category, date)); //placeholder args
         for(Task task : main.tasks){
-            todo.getChildren().add(task.getTask());
+            todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }
     /**
