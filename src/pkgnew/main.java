@@ -30,7 +30,7 @@ public class main extends Application {
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
-        stage.setTitle("Fast->Task");
+        stage.setTitle("Fast->Task"); //sets text at top of menu
         stage.show();
     }
 
