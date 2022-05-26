@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  * @author danie
  */
 public class addTaskMenuController  {
+    
     @FXML  
     TextField nameTaskField;
     @FXML
@@ -27,32 +28,28 @@ public class addTaskMenuController  {
     TextField categoryField;
     @FXML
     DatePicker datePicker;
-  
 
     public Stage stage;
     private Scene scene;
     private Parent root;
 
-   
     public void createTask(ActionEvent event) throws IOException {
 
         String taskName = nameTaskField.getText();
         String owner = ownerField.getText();
         String category = categoryField.getText();
-        String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); //converts LocalDate -> String
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();	
 
         MainMenuController mainMenuController = loader.getController();
         
-        mainMenuController.finalizeTask(taskName, owner, category, date);
+        mainMenuController.finalizeTask(taskName, owner, category, date); 
 
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
-    
- 
 }
