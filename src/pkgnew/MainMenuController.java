@@ -39,8 +39,8 @@ public class MainMenuController {
         //get text from text fields,
         //store them in variables
         
-        main.tasks.add(new Task(taskName, owner, category, date)); //placeholder args
-        for(Task task : main.tasks){
+        Main.tasks.add(new Task(taskName, owner, category, date)); //placeholder args
+        for(Task task : Main.tasks){
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }

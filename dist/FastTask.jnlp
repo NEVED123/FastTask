@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="main.jnlp">
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="FastTask.jnlp">
   <information>
-    <title>main</title>
+    <title>FastTask</title>
     <vendor>danie</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="main.jar" size="11353" download="eager" />
+    <jar href="FastTask.jar" size="11366" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="main" >
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="FastTask" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="pkgnew.main"  name="main" />
+  <jfx:javafx-desc  width="800" height="600" main-class="pkgnew.Main"  name="FastTask" />
   <update check="always"/>
 </jnlp>

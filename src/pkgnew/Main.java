@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  *
  * @author danie
  */
-public class main extends Application {
+public class Main extends Application {
     
     public static ArrayList<Task> tasks = new ArrayList<>();
 
@@ -32,6 +32,7 @@ public class main extends Application {
         stage.setScene(scene);
         stage.setTitle("Fast->Task"); //sets text at top of menu
         stage.show();
+        //THIS IS A CHANGE IN THE MAIN CLASS
     }
 
     /**
