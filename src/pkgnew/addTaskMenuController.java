@@ -38,7 +38,11 @@ public class addTaskMenuController  {
         String taskName = nameTaskField.getText();
         String owner = ownerField.getText();
         String category = categoryField.getText();
-        String date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); //converts LocalDate -> String
+        String date;
+        if(datePicker.getValue() == null)
+            date = "No date selected";
+        else
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); //converts LocalDate -> String
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();	
