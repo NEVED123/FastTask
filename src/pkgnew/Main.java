@@ -32,7 +32,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("Fast->Task"); //sets text at top of menu
         stage.show();
-        //THIS IS A CHANGE IN THE MAIN CLASS FILE
+        //THIS IS A CHANGE IN MAIN BRANCH
     }
 
     /**
