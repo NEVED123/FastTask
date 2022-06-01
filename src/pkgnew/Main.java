@@ -2,6 +2,7 @@
 package pkgnew;
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     
     public static ArrayList<Task> tasks = new ArrayList<>();
+    private static File directory;
+    public static PrintWriter storage;
 
     /**
      *
@@ -25,14 +28,23 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //create folder C:\FastTask
-        File file = new File(System.getProperty("user.home") + "\\FastTask");
-        if (!file.exists()) {
-            if (file.mkdir()) {
+        directory = new File(System.getProperty("user.home") + "\\FastTask");
+        if (!directory.exists()) {
+            if (directory.mkdir()) {
                 System.out.println("Directory is created!");
+                //not much else to do here, it is a blank folder
+                try{
+                    storage = new PrintWriter(System.getProperty("user.home") + "\\FastTask\\fasttask.txt");
+                }
+                catch(Exception e){
+                    e.getStackTrace();
+                }        
             } else {
                 System.out.println("Directory failed to create");
+                //add code in here that creates an error
             }
         }
+ 
         //fasttask.txt
         //if there's already the folder, load the information from it 
         Parent root;
