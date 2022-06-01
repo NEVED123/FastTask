@@ -34,6 +34,8 @@ public class addTaskMenuController  {
     private Parent root;
 
     public void createTask(ActionEvent event) throws IOException {
+        
+        
 
         String taskName = nameTaskField.getText();
         String owner = ownerField.getText();
@@ -55,5 +57,6 @@ public class addTaskMenuController  {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        //store information in the folder
     }
 }
