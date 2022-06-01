@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane layoutX="5.0" layoutY="6.0" prefHeight="64.0" prefWidth="290.0">
          <children>
@@ -46,5 +46,6 @@
             <Label layoutX="5.0" layoutY="43.0" text="Due Date:" />
          </children>
       </AnchorPane>
+      <Label layoutX="93.0" layoutY="64.0" text="Due in" />
    </children>
 </AnchorPane>

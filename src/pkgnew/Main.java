@@ -1,10 +1,10 @@
 
 package pkgnew;
 
+import java.io.File;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -24,6 +24,17 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
+        //create folder C:\FastTask
+        File file = new File(System.getProperty("user.home") + "\\FastTask");
+        if (!file.exists()) {
+            if (file.mkdir()) {
+                System.out.println("Directory is created!");
+            } else {
+                System.out.println("Directory failed to create");
+            }
+        }
+        //fasttask.txt
+        //if there's already the folder, load the information from it 
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         
@@ -32,7 +43,7 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("Fast->Task"); //sets text at top of menu
         stage.show();
-        //THIS IS A CHANGE IN THE MAIN CLASS FILE
+
     }
 
     /**
