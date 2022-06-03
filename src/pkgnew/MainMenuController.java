@@ -25,7 +25,7 @@ public class MainMenuController {
     private Parent root;    
 
     @FXML
-    FlowPane todo;
+    public FlowPane todo;
  
     public void addTask(ActionEvent event) throws IOException {  
         root = FXMLLoader.load(getClass().getResource("AddTaskMenu.fxml"));
@@ -39,8 +39,8 @@ public class MainMenuController {
         //get text from text fields,
         //store them in variables
         
-        Main.tasks.add(new Task(taskName, owner, category, date)); //placeholder args
-        for(Task task : Main.tasks){
+        Main.todoList.add(new Task(taskName, owner, category, date)); //placeholder args
+        for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }
