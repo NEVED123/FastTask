@@ -26,7 +26,7 @@ public class Main extends Application {
     public static ArrayList<Task> doneList;
     public static ArrayList<Task> todayList;
     private static File directory;
-    public String path;
+    public static String path;
     /**
      *
      * @param stage
@@ -54,7 +54,7 @@ public class Main extends Application {
         File file = new File(path);
         if(!file.exists()){
             try{
-                FileWriter taskWriter = new FileWriter(path, true);
+                FileWriter createFile = new FileWriter(path, true);
             }
             catch(Exception e){
                 e.getStackTrace();
