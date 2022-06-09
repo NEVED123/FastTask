@@ -54,49 +54,53 @@ public class Main extends Application {
         File file = new File(path);
         if(!file.exists()){
             try{
-                FileWriter createFile = new FileWriter(path, true);
+                FileWriter createFile = new FileWriter(path);
             }
             catch(Exception e){
                 e.getStackTrace();
             }
         }
-
+        //we have a the FastTask folder and an existing txt file, now we must load info from the document
+        
         todoList = new ArrayList<>();
         doingList = new ArrayList<>();
         doneList = new ArrayList<>();
         todayList = new ArrayList<>();
-        //we have a the FastTask folder and an existing txt file, now we must load info from the document
+        
         HashMap<String, ArrayList<Task>> columnKey = new HashMap();
         columnKey.put("todo", todoList);
         columnKey.put("doing", doingList);
         columnKey.put("done", doneList);
-        columnKey.put("today", todayList);
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
             if(split.length == 5 && columnKey.containsKey(split[0])){
-                //System.out.println(columnKey.get(split[0]));
-                columnKey.get(split[0]).add(new Task(split[1], split[2], split[3], split[4]));
+                ArrayList columnToAddTo = columnKey.get(split[0]);                
+                columnToAddTo.add(new Task(split[1], split[2], split[3], split[4]));                
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
         }
 
-        
-        
- 
-        //fasttask.txt
-        //if there's already the folder, load the information from it 
         Parent root;
         root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         
         FlowPane todoFlowPane = (FlowPane)root.lookup("#todo");
-        //FlowPane doingFlowPane = (FlowPane)root.lookup("doing");
-        //FlowPane doneFlowPane = (FlowPane)root.lookup("#done");
-        //FlowPane todayFlowPane = (FlowPane)root.lookup("#today");
+        FlowPane doingFlowPane = (FlowPane)root.lookup("#doing");
+        FlowPane doneFlowPane = (FlowPane)root.lookup("#done");
+        FlowPane todayFlowPane = (FlowPane)root.lookup("#today");
         
         for(Task task : todoList){
             todoFlowPane.getChildren().add(task.getTask());
         }
+        for(Task task : doingList){
+            doingFlowPane.getChildren().add(task.getTask());
+        }        
+        for(Task task : doneList){
+            doneFlowPane.getChildren().add(task.getTask());
+        }     
+        for(Task task : todayList){
+            todayFlowPane.getChildren().add(task.getTask());
+        } 
         
         Scene scene = new Scene(root);
         
