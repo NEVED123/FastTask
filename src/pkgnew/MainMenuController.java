@@ -42,11 +42,11 @@ public class MainMenuController {
         stage.show(); 
     }
     
-    public void finalizeTask(String taskName, String owner, String category, String date, int count) throws IOException {
+    public void finalizeTask(String taskName, String owner, String category, String date, int count, String due, String priority) throws IOException {
         //get text from text fields,
         //store them in variables
         
-        Main.todoList.add(new Task(taskName, owner, category, date, count)); //placeholder args
+        Main.todoList.add(new Task(taskName, owner, category, date, count, due, priority)); //placeholder args
         for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }

@@ -3,7 +3,13 @@ package pkgnew;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
@@ -29,28 +36,82 @@ public class addTaskMenuController  {
     TextField categoryField;
     @FXML
     DatePicker datePicker;
+    @FXML
+    TextField dueLabel;
+    @FXML
+    TextField priorityLabel;
+    
+    @FXML
+    public ImageView ratingOne;
+    @FXML
+    public ImageView ratingTwo;
+    @FXML
+    public ImageView ratingThree;
+    @FXML
+    public ImageView ratingFour;
+    @FXML
+    public ImageView ratingFive;
+    @FXML
+    public ImageView finStarOne;
+    @FXML
+    public ImageView finStarTwo;
+    @FXML
+    public ImageView finStarThree;
+    @FXML
+    public ImageView finStarFour;
+    @FXML
+    public ImageView finStarFive;
 
     public Stage stage;
     private Scene scene;
     private Parent root;
+    public String starClicked;
 
-    public void createTask(ActionEvent event) throws Exception {
+    public void createTask(ActionEvent event) throws Exception, ParseException {
 
         String taskName = nameTaskField.getText();
         String owner = ownerField.getText();
         String category = categoryField.getText();
         String date;
+        String due = null;
+        String priority = starClicked;
         if(datePicker.getValue() == null)
             date = "No date selected";
         else
-            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); //converts LocalDate -> String
+            date = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //converts LocalDate -> String
+        
+         LocalDate rightNow = LocalDate.now(); //local date class
+        String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //creating a string format class for THE local date (now)
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH); //creating an object using the same string format class idea as before for the local date (probably won't need)
+
+        if (datePicker.getValue() == null) { //if datepicker's value that it holds is nothing, then make 'due' string say something
+            due = "Due date is a mystery";
+        }
+        else { //else...
+            Date datePickerDate = sdf.parse(date); //parsing the date that is picked in the date picker and name it 'firstDate'
+            Date currentDate = sdf.parse(formattedNowDate); //parsing the date that is RIGHT NOW and naming it 'secondDate'
+            long dateSubtraction = datePickerDate.getTime() - currentDate.getTime(); //using long and naming is diff, it will equal to the date picker date (firstDate) minus the current local date (secondDate)
+            TimeUnit timeInDays = TimeUnit.DAYS; //create a time unit object using days and naming it time
+            TimeUnit timeInHours = TimeUnit.HOURS; //May not be needed
+            long dueDateConversion = timeInDays.convert(dateSubtraction, TimeUnit.MILLISECONDS); //a long variable called 'difference' and converting 'diff' (the days) from milliseconds
+            long dueDateConvers = timeInHours.convert(dateSubtraction, TimeUnit.MILLISECONDS); //May not be needed
+            if ((dueDateConversion) == 1) {
+                due = "Task Is Due In the Next 24 Hours!";
+            }
+            else
+                due = "Due in: " + (String.valueOf(dueDateConversion)) + " Days!"; //having the FXML line 'due' spit out "Due in: _____ Days!"
+            System.out.println(timeInDays); //printing in console
+            System.out.println(dateSubtraction); //printing in console -> shows milliseconds in how many days
+            System.out.println(dueDateConversion); //printing in console
+            System.out.println(dueDateConvers); //printing in console
+        }
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();	
 
         MainMenuController mainMenuController = loader.getController();
         
-        mainMenuController.finalizeTask(taskName, owner, category, date, Main.count); 
+        mainMenuController.finalizeTask(taskName, owner, category, date, Main.count, due, priority); 
         Main.count++;
         
         Main.decrypt();
@@ -77,5 +138,66 @@ public class addTaskMenuController  {
         stage.setScene(scene);
         stage.show();
     }
+        
+     public void mousePressedStarOne () {
+        System.out.println("Star One is Pressed.");
+        starClicked = "One";
+    }
+    
+    public void mousePressedStarTwo () {
+        System.out.println("Star Two is Pressed.");
+        starClicked = "Two";
+    }
+    
+    public void mousePressedStarThree () {
+        System.out.println("Star Three is Pressed.");
+        starClicked = "Three";
+    }
+    
+    public void mousePressedStarFour () {
+        System.out.println("Star Four is Pressed.");
+        starClicked = "Four";
+    }
+    
+    public void mousePressedStarFive () {
+        System.out.println("Star Five is Pressed.");
+        starClicked = "Five";
+    }
+    
+    public void mouseReleased () {
+        System.out.println(starClicked);
+        if (starClicked == "One") {
+            ratingOne.setOpacity(1);
+            ratingTwo.setOpacity(.5);
+            ratingThree.setOpacity(.5);
+            ratingFour.setOpacity(.5);
+            ratingFive.setOpacity(.5);
+        } else if (starClicked == "Two") {
+            ratingOne.setOpacity(1);
+            ratingTwo.setOpacity(1);
+            ratingThree.setOpacity(.5);
+            ratingFour.setOpacity(.5);
+            ratingFive.setOpacity(.5);
+        } else if (starClicked == "Three") {
+            ratingOne.setOpacity(1);
+            ratingTwo.setOpacity(1);
+            ratingThree.setOpacity(1);
+            ratingFour.setOpacity(.5);
+            ratingFive.setOpacity(.5);
+        } else if (starClicked == "Four") {
+            ratingOne.setOpacity(1);
+            ratingTwo.setOpacity(1);
+            ratingThree.setOpacity(1);
+            ratingFour.setOpacity(1);
+            ratingFive.setOpacity(.5);
+        } else if (starClicked == "Five") {
+            ratingOne.setOpacity(1);
+            ratingTwo.setOpacity(1);
+            ratingThree.setOpacity(1);
+            ratingFour.setOpacity(1);
+            ratingFive.setOpacity(1);
+        } 
+        
+    }    
     
 }

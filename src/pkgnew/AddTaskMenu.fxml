@@ -24,27 +24,27 @@
             <TextField fx:id="ownerField" layoutX="376.0" layoutY="145.0" prefHeight="26.0" prefWidth="147.0" promptText="Owner" />
             <TextField fx:id="categoryField" layoutX="376.0" layoutY="178.0" prefHeight="26.0" prefWidth="147.0" promptText="Category" />
             <DatePicker fx:id="datePicker" layoutX="376.0" layoutY="214.0" prefHeight="26.0" prefWidth="147.0" promptText="Due Date" />
-            <ImageView fx:id="ratingone" fitHeight="26.0" fitWidth="28.0" layoutX="377.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ratingOne" fitHeight="26.0" fitWidth="28.0" layoutX="377.0" layoutY="269.0" onMousePressed="#mousePressedStarOne" onMouseReleased="#mouseReleased" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="406.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ratingTwo" fitHeight="26.0" fitWidth="28.0" layoutX="406.0" layoutY="269.0" onMousePressed="#mousePressedStarTwo" onMouseReleased="#mouseReleased" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="437.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ratingThree" fitHeight="26.0" fitWidth="28.0" layoutX="437.0" layoutY="269.0" onMousePressed="#mousePressedStarThree" onMouseReleased="#mouseReleased" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="33.0" layoutX="467.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ratingFour" fitHeight="26.0" fitWidth="33.0" layoutX="467.0" layoutY="269.0" onMousePressed="#mousePressedStarFour" onMouseReleased="#mouseReleased" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="28.0" layoutX="495.0" layoutY="269.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="ratingFive" fitHeight="26.0" fitWidth="28.0" layoutX="495.0" layoutY="269.0" onMousePressed="#mousePressedStarFive" onMouseReleased="#mouseReleased" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
