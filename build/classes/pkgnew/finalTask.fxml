@@ -6,11 +6,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="86.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.MainMenuController">
    <children>
       <AnchorPane layoutX="5.0" layoutY="6.0" prefHeight="64.0" prefWidth="290.0">
          <children>
-            <Button layoutX="253.0" layoutY="16.0" mnemonicParsing="false" prefHeight="8.0" prefWidth="22.0" text="*" />
+            <Button fx:id="moveBtn" layoutX="253.0" layoutY="16.0" mnemonicParsing="false" onAction="#move" prefHeight="8.0" prefWidth="22.0" text="*" />
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="66.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />

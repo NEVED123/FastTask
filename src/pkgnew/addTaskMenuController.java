@@ -50,7 +50,8 @@ public class addTaskMenuController  {
 
         MainMenuController mainMenuController = loader.getController();
         
-        mainMenuController.finalizeTask(taskName, owner, category, date); 
+        mainMenuController.finalizeTask(taskName, owner, category, date, Main.count); 
+        Main.count++;
         
         Main.decrypt();
         FileWriter taskWriter = new FileWriter(Main.path, true);

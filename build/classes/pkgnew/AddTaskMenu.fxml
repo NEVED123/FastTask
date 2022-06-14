@@ -49,7 +49,8 @@
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <Button fx:id="finalizeTaskButton" layoutX="428.0" layoutY="304.0" mnemonicParsing="false" onAction="#createTask" text="Done" />
+            <Button fx:id="finalizeTaskButton" layoutX="380.0" layoutY="306.0" mnemonicParsing="false" onAction="#createTask" text="Done" />
+            <Button fx:id="back" layoutX="454.0" layoutY="306.0" mnemonicParsing="false" onAction="#goBack" text="Button" />
          </children>
       </AnchorPane>
     </children>

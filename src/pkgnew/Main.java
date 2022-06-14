@@ -30,6 +30,7 @@ public class Main extends Application {
     private static File directory;
     public static String path;
     public static int shift = 3;
+    public static int count = 0;
   
     /**
      *
@@ -85,16 +86,18 @@ public class Main extends Application {
 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
-            if(split.length == 5 && columnKey.containsKey(split[0])){
+            if(split.length == 6 && columnKey.containsKey(split[0])){
                 ArrayList columnToAddTo = columnKey.get(split[0]);
                 String taskName = split[1];
                 String owner = split[2];
                 String category = split[3];
                 String date = split[4];
+                String count = split[5];
+                int taskCount = Integer.parseInt(count);
                 String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));                 
-                columnToAddTo.add(new Task(taskName, owner, category, date));
+                columnToAddTo.add(new Task(taskName, owner, category, date, taskCount));
                 if(dateNow == date){
-                    todayList.add(new Task(taskName, owner, category, date));
+                    todayList.add(new Task(taskName, owner, category, date, taskCount));
                 }
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG

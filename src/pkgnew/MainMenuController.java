@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -41,11 +42,11 @@ public class MainMenuController {
         stage.show(); 
     }
     
-    public void finalizeTask(String taskName, String owner, String category, String date) throws IOException {
+    public void finalizeTask(String taskName, String owner, String category, String date, int count) throws IOException {
         //get text from text fields,
         //store them in variables
         
-        Main.todoList.add(new Task(taskName, owner, category, date)); //placeholder args
+        Main.todoList.add(new Task(taskName, owner, category, date, count)); //placeholder args
         for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
@@ -65,6 +66,27 @@ public class MainMenuController {
             today.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }
+        
+       public void move(ActionEvent event) throws IOException {
+        System.out.println("button pressed");
+        Button source1 = (Button)event.getSource(); //yields complete string
+        String id = source1.getId();
+        //String source2 = event.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
+        System.out.println("source: " + source1);
+        System.out.println("Just the id: " + id);
+       
+        System.out.println(Main.todoList);
+        //System.out.println(" " + source2); 
+        int x = Integer.parseInt(id);
+        for (Task task : Main.todoList) {
+            if (task.count == x){
+                System.out.println("HELLOOOOO");
+                Main.todoList.remove(task.getTask());
+            }
+            
+        }
+        
+    }     
     
     /**
      * Initializes the controller class.
