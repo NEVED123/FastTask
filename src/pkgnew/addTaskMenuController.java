@@ -92,9 +92,9 @@ public class addTaskMenuController  {
             Date currentDate = sdf.parse(formattedNowDate); //parsing the date that is RIGHT NOW and naming it 'secondDate'
             long dateSubtraction = datePickerDate.getTime() - currentDate.getTime(); //using long and naming is diff, it will equal to the date picker date (firstDate) minus the current local date (secondDate)
             TimeUnit timeInDays = TimeUnit.DAYS; //create a time unit object using days and naming it time
-            TimeUnit timeInHours = TimeUnit.HOURS; //May not be needed
+            //TimeUnit timeInHours = TimeUnit.HOURS; //May not be needed
             long dueDateConversion = timeInDays.convert(dateSubtraction, TimeUnit.MILLISECONDS); //a long variable called 'difference' and converting 'diff' (the days) from milliseconds
-            long dueDateConvers = timeInHours.convert(dateSubtraction, TimeUnit.MILLISECONDS); //May not be needed
+            //long dueDateConvers = timeInHours.convert(dateSubtraction, TimeUnit.MILLISECONDS); //May not be needed
             if ((dueDateConversion) == 1) {
                 due = "Task Is Due In the Next 24 Hours!";
             }
@@ -103,7 +103,7 @@ public class addTaskMenuController  {
             System.out.println(timeInDays); //printing in console
             System.out.println(dateSubtraction); //printing in console -> shows milliseconds in how many days
             System.out.println(dueDateConversion); //printing in console
-            System.out.println(dueDateConvers); //printing in console
+            //System.out.println(dueDateConvers); //printing in console
         }
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
