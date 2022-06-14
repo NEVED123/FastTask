@@ -64,4 +64,17 @@ public class addTaskMenuController  {
         stage.show();
 
     }
+    
+        public void goBack(ActionEvent event) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
+        root = loader.load();
+        MainMenuController mainMenuController = loader.getController();
+        
+        mainMenuController.revert();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+    
 }

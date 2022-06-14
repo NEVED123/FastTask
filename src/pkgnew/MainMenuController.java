@@ -26,6 +26,12 @@ public class MainMenuController {
 
     @FXML
     public FlowPane todo;
+    @FXML
+    FlowPane doing;
+    @FXML
+    FlowPane done;
+    @FXML
+    FlowPane today;
  
     public void addTask(ActionEvent event) throws IOException {  
         root = FXMLLoader.load(getClass().getResource("AddTaskMenu.fxml"));
@@ -44,6 +50,22 @@ public class MainMenuController {
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }
+    
+        public void revert()throws IOException{
+        for(Task task : Main.todoList){
+            todo.getChildren().add(task.getTask()); //must call getTask on each task class
+        }
+         for(Task task : Main.doingList){
+            doing.getChildren().add(task.getTask()); //must call getTask on each task class
+        }
+          for(Task task : Main.doneList){
+            done.getChildren().add(task.getTask()); //must call getTask on each task class
+        }
+           for(Task task : Main.todayList){
+            today.getChildren().add(task.getTask()); //must call getTask on each task class
+        }
+    }
+    
     /**
      * Initializes the controller class.
      * @param url
