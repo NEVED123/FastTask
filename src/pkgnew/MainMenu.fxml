@@ -14,7 +14,7 @@
           <children>
               <Label fx:id="label" layoutX="21.0" layoutY="53.0" minHeight="16" minWidth="69" text="To do" />
             <FlowPane fx:id="todo" layoutX="21.0" layoutY="86.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="316.0" />
-            <FlowPane fx:id="doing" layoutX="269.0" layoutY="86.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="200.0" />
+            <FlowPane fx:id="doing" layoutX="337.0" layoutY="84.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="200.0" />
             <FlowPane fx:id="done" layoutX="518.0" layoutY="76.0" orientation="VERTICAL" prefHeight="354.0" prefWidth="200.0" />
             <FlowPane fx:id="today" layoutX="763.0" layoutY="72.0" orientation="VERTICAL" prefHeight="354.0" prefWidth="200.0" />
             <Label layoutX="377.0" layoutY="51.0" text="Doing" />

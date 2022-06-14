@@ -34,7 +34,7 @@ public class addTaskMenuController  {
     private Scene scene;
     private Parent root;
 
-    public void createTask(ActionEvent event) throws IOException {
+    public void createTask(ActionEvent event) throws Exception {
 
         String taskName = nameTaskField.getText();
         String owner = ownerField.getText();
@@ -52,9 +52,11 @@ public class addTaskMenuController  {
         
         mainMenuController.finalizeTask(taskName, owner, category, date); 
         
+        Main.decrypt();
         FileWriter taskWriter = new FileWriter(Main.path, true);
         taskWriter.append("todo," + taskName + "," + owner + "," + category + "," + date + "\n");//store information in the folder
         taskWriter.close();
+        Main.encrypt();
         
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);

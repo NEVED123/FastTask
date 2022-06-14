@@ -3,9 +3,10 @@ package pkgnew;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.application.Application;
@@ -14,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+
 
 /**
  *
@@ -27,6 +29,8 @@ public class Main extends Application {
     public static ArrayList<Task> todayList;
     private static File directory;
     public static String path;
+    public static int shift = 3;
+  
     /**
      *
      * @param stage
@@ -71,12 +75,27 @@ public class Main extends Application {
         columnKey.put("todo", todoList);
         columnKey.put("doing", doingList);
         columnKey.put("done", doneList);
+
+        
+        decrypt();
+        
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+
+        encrypt();
+
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
             if(split.length == 5 && columnKey.containsKey(split[0])){
-                ArrayList columnToAddTo = columnKey.get(split[0]);                
-                columnToAddTo.add(new Task(split[1], split[2], split[3], split[4]));                
+                ArrayList columnToAddTo = columnKey.get(split[0]);
+                String taskName = split[1];
+                String owner = split[2];
+                String category = split[3];
+                String date = split[4];
+                String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));                 
+                columnToAddTo.add(new Task(taskName, owner, category, date));
+                if(dateNow == date){
+                    todayList.add(new Task(taskName, owner, category, date));
+                }
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
         }
@@ -116,5 +135,134 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+    
+    public static void encrypt() throws Exception {        
+        ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+        FileWriter clearer = new FileWriter(path, false);
+        clearer.write("");
+        FileWriter encryptedTaskWriter = new FileWriter(path, true);
+        
+        for(String taskString : taskStrings){
+            
+            StringBuilder encryptedTask = new StringBuilder();
+            
+            for(char ch : taskString.toCharArray()){
+                if(ch == ','){
+                    encryptedTask.append(',');
+                }
+                else if(ch == '-'){
+                    encryptedTask.append('-');
+                }
+                else if(Character.isDigit(ch)){
+                    int dateNum = Character.digit(ch, 10);
+                    if(dateNum <= 6){
+                        dateNum += 3;
+                    }
+                    else{
+                       dateNum -= 7; 
+                    }
+
+                    Character ceasarChar = Character.forDigit(dateNum, 10);
+                    encryptedTask.append(ceasarChar);
+                }
+                else if(Character.isUpperCase(ch)){
+                    char ceasarChar = (char)(((int)ch + shift - 65) % 26 + 65);
+                    encryptedTask.append(ceasarChar);                    
+                }
+                else{
+                    char ceasarChar = (char)(((int)ch + (shift) - 97) % 26 + 97);
+                    encryptedTask.append(ceasarChar);
+                }     
+                
+            }
+            
+            String encryptedTaskString = encryptedTask.toString();
+            encryptedTaskWriter.append(encryptedTaskString + "\n");
+        }
+        
+        encryptedTaskWriter.close();
+    }
+    
+    public static void decrypt() throws Exception{
+        ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+        FileWriter clearer = new FileWriter(path, false);
+        clearer.write("");
+        FileWriter decryptedTaskWriter = new FileWriter(path, true);
+        
+        for(String taskString : taskStrings){
+            
+            StringBuilder decryptedTask = new StringBuilder();
+            
+            for(char ch : taskString.toCharArray()){               
+                if(ch == ','){
+                    decryptedTask.append(','); 
+                }else if(ch == '-'){
+                    decryptedTask.append('-');
+                }else if(Character.isDigit(ch)){ 
+                    int dateNum = Character.digit(ch, 10);
+                    if(dateNum >= 3){
+                        dateNum -= 3;
+                    }else{
+                        dateNum += 7;
+                    }
+                    
+                    Character ceasarChar = Character.forDigit(dateNum, 10);  
+                    decryptedTask.append(ceasarChar);
+                    
+                }else if(Character.isUpperCase(ch)){
+                    char ceasarChar = (char)(((int)ch + (26-shift) - 65) % 26 + 65);
+                    decryptedTask.append(ceasarChar);                    
+                }
+                else{
+                    char ceasarChar = (char)(((int)ch + (26-shift) - 97) % 26 + 97);
+                    decryptedTask.append(ceasarChar);
+                }
+                
+
+            }
+            
+            String decryptedTaskString = decryptedTask.toString();
+            decryptedTaskWriter.append(decryptedTaskString + "\n");
+        }
+        
+        decryptedTaskWriter.close();
+    }
+   
+    //DOES NOT MOVE COLUMNS YET, WE WILL GET THERE
+    public static void updateTask(Task targetTask, Task updatedTask) throws Exception{
+        decrypt();
+        ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+        FileWriter clearer = new FileWriter(path, false);
+        clearer.write("");
+        FileWriter taskWriter = new FileWriter(path, true);
+        for(String taskString : taskStrings){
+            String[] split = taskString.split(",");
+            if(split.length == 5){
+                String column = split[0];
+                String taskName = split[1];
+                String owner = split[2];
+                String category = split[3];
+                String date = split[4];
+                //SEARCH BY COLUMN AND PRIORITY WHEN POSSIBLE
+                if(taskName == targetTask.taskName 
+                        && owner == targetTask.owner 
+                        && category == targetTask.category
+                        && date == targetTask.date){
+                    taskWriter.append(column + "," 
+                            + updatedTask.taskName + "," 
+                            + updatedTask.owner + "," 
+                            + updatedTask.category + "," 
+                            + updatedTask.date + "\n");
+                }
+                else{
+                    taskWriter.append(taskString);
+                }
+            }
+        }
+        
+        encrypt();
+    }
+    
+    
     
 }
