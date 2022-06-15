@@ -9,9 +9,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.MainMenuController">
    <children>
-      <AnchorPane layoutX="5.0" layoutY="6.0" prefHeight="100.0" prefWidth="290.0">
+      <AnchorPane fx:id="taskPane" layoutX="5.0" layoutY="6.0" prefHeight="100.0" prefWidth="290.0">
          <children>
-            <Button fx:id="moveBtn" layoutX="262.0" layoutY="-4.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="26.0" prefWidth="30.0" text="*" />
+            <Button fx:id="deleteBtn" layoutX="262.0" layoutY="-4.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="26.0" prefWidth="30.0" text="X" />
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="66.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />

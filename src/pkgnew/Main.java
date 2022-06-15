@@ -3,6 +3,7 @@ package pkgnew;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 
@@ -27,6 +27,7 @@ public class Main extends Application {
     public static ArrayList<Task> doingList;
     public static ArrayList<Task> doneList;
     public static ArrayList<Task> todayList;
+    public static HashMap<String, ArrayList<Task>> columnKey = new HashMap();
     private static final File directory = new File(System.getProperty("user.home") + "\\FastTask");
     public static final String path = System.getProperty("user.home") + "\\FastTask\\fasttask.txt";
     public static final String countPath = System.getProperty("user.home") + "\\FastTask\\count.txt";;
@@ -93,23 +94,19 @@ public class Main extends Application {
         doneList = new ArrayList<>();
         todayList = new ArrayList<>();
         
-        HashMap<String, ArrayList<Task>> columnKey = new HashMap();
         columnKey.put("todo", todoList);
         columnKey.put("doing", doingList);
         columnKey.put("done", doneList);
-
+        columnKey.put("today", todayList); //only accessed when editing methods
         
-        decrypt();
+        //decrypt();
         
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
 
-        encrypt();
+        //encrypt();
 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
-            for(String s : split){
-                System.out.println(s);
-            }
             if(split.length == 7 && columnKey.containsKey(split[0])){
                 ArrayList columnToAddTo = columnKey.get(split[0]);
                 String count = split[1];
@@ -291,6 +288,27 @@ public class Main extends Application {
         FileWriter totalCountIncrementer = new FileWriter(countPath);
         totalCountIncrementer.write(String.valueOf(totalCount));
         totalCountIncrementer.close();
+    }
+    
+    public static void deleteStoredTask(int taskCount) throws Exception {
+        decrypt();
+        ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+        FileWriter clearer = new FileWriter(path, false);
+        clearer.write("");
+        clearer.close();
+        FileWriter taskWriter = new FileWriter(path, true);
+        
+        for(String taskString : taskStrings){
+            String[] split = taskString.split(",");
+            int currentTaskCount = Integer.parseInt(split[1]);
+            if(currentTaskCount != taskCount){
+                taskWriter.write(taskString + "\n");
+            }
+            
+        }
+        
+        taskWriter.close();
+        encrypt();
     }
     
     

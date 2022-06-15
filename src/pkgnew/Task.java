@@ -52,7 +52,8 @@ public class Task{
         Label ownerLabel = (Label)root.lookup("#ownerLabel");
         Label categoryLabel = (Label)root.lookup("#categoryLabel");
         Label dateLabel = (Label)root.lookup("#ddLabel");
-        Button next = (Button)root.lookup("#moveBtn");
+        Button deleteBtn = (Button)root.lookup("#deleteBtn");
+        AnchorPane taskPane = (AnchorPane)root.lookup("#taskPane");
         //label being correlated with the named label in the scenebuilder fxml
         Label dueLabel = (Label)root.lookup("#dueLabel");
         Label priorityLabel = (Label)root.lookup("#priorityLabel");
@@ -68,7 +69,8 @@ public class Task{
         dateLabel.setText(date);
         
         String newId = "" + count;
-        next.setId(newId);
+        taskPane.setId(newId);
+        //deleteBtn.setId(newId); //will be able to get rid of this line
         
         dueLabel.setText(due);        
         priorityLabel.setText("Priority Level: " + priority);
@@ -80,6 +82,8 @@ public class Task{
     
     public static void setStarOpacity(String priority, ImageView one, ImageView two, 
             ImageView three, ImageView four, ImageView five){
+        if(priority == null)
+            return;
         if (priority.contentEquals("One")){
             one.setOpacity(1);
             two.setOpacity(.5);

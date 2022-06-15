@@ -49,24 +49,28 @@ public class MainMenuController {
         }
     }
     
-    public void deleteTask(ActionEvent event) throws IOException {
+    public void deleteTask(ActionEvent event) throws Exception {
         System.out.println("button pressed");
-        Button source1 = (Button)event.getSource(); //yields complete string
-        String id = source1.getId();
-        //String source2 = event.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
-        System.out.println("id: " + id);
+        Button deleteBtn = (Button)event.getSource(); //yields complete string
+        String id = deleteBtn.getParent().getId();
+        
+        //cursed code gets the column
+        String columnId = deleteBtn.getParent().getParent().getParent().getId();
        
-        System.out.println(Main.todoList);
+        System.out.println("id: " + id);
+        
+        ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);        
+       
         Task taskToMove = new Task("", "", "", "", -1, "", "");
         int x = Integer.parseInt(id);
-        for (Task task : Main.todoList) {
+        for (Task task : listToUpdate) {
             if (task.count == x){
                 taskToMove = task;
             }
         }
-        
-        Main.todoList.remove(taskToMove);
-        System.out.println(Main.todoList);
+
+        listToUpdate.remove(taskToMove);
+        Main.deleteStoredTask(taskToMove.count);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         root = loader.load();
@@ -92,13 +96,13 @@ public class MainMenuController {
         for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); 
         }
-         for(Task task : Main.doingList){
+        for(Task task : Main.doingList){
             doing.getChildren().add(task.getTask()); 
         }
-          for(Task task : Main.doneList){
+        for(Task task : Main.doneList){
             done.getChildren().add(task.getTask()); 
         }
-           for(Task task : Main.todayList){
+        for(Task task : Main.todayList){
             today.getChildren().add(task.getTask()); 
         }
     }
