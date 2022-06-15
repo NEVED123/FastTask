@@ -114,11 +114,9 @@ public class addTaskMenuController  {
         mainMenuController.finalizeTask(taskName, owner, category, date, Main.count, due, priority); 
         Main.count++;
         
-        Main.decrypt();
-        FileWriter taskWriter = new FileWriter(Main.path, true);
-        taskWriter.append("todo," + taskName + "," + owner + "," + category + "," + date + "\n");//store information in the folder
-        taskWriter.close();
-        Main.encrypt();
+        //NOTE: DUE IS NOT STORED ON LOCAL MACHINE, AS IT DIFFERS FROM DAY TO DAY.
+        //RATHER, IT IS GENERATED BASED ON THE DATE OF THE TASK.
+        storeTask(taskName, owner, category, date, Main.count, priority);
         
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -198,6 +196,14 @@ public class addTaskMenuController  {
             ratingFive.setOpacity(1);
         } 
         
-    }    
+    }
+    
+    private void storeTask(String taskName, String owner, String category, String date, int count, String priority) throws IOException{
+        //Main.decrypt();
+        FileWriter taskWriter = new FileWriter(Main.path, true);
+        taskWriter.append("todo," + taskName + "," + owner + "," + category + "," + date + "," + count + "," + priority + "\n");//store information in the folder
+        taskWriter.close();
+        //Main.encrypt();
+    }
     
 }
