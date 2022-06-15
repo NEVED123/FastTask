@@ -132,12 +132,12 @@ public class addTaskMenuController  {
         Task.setStarOpacity(starClicked, ratingOne, ratingTwo, ratingThree, ratingFour, ratingFive);
     }
        
-    private void storeTask(int count, String taskName, String owner, String category, String date, String priority) throws IOException{
-        //Main.decrypt();
+    private void storeTask(int count, String taskName, String owner, String category, String date, String priority) throws Exception{
+        Main.decrypt();
         FileWriter taskWriter = new FileWriter(Main.path, true);
         taskWriter.append("todo," + count + "," + taskName + "," + owner + "," + category + "," + date + "," + priority + "\n");//store information in the folder
         taskWriter.close();
-        //Main.encrypt();
+        Main.encrypt();
     }
     
 }

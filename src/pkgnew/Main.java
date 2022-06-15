@@ -78,11 +78,11 @@ public class Main extends Application {
         columnKey.put("done", doneList);
 
         
-        //decrypt();
+        decrypt();
         
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
 
-        //encrypt();
+        encrypt();
 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
@@ -109,14 +109,7 @@ public class Main extends Application {
         }
 
         Parent root;
-        
-//        FlowPane todoFlowPane = (FlowPane)root.lookup("#todo");
-//        FlowPane doingFlowPane = (FlowPane)root.lookup("#doing");
-//        FlowPane doneFlowPane = (FlowPane)root.lookup("#done");
-//        FlowPane todayFlowPane = (FlowPane)root.lookup("#today");
-
-
-        
+         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();
         
@@ -152,8 +145,8 @@ public class Main extends Application {
                 if(ch == ','){
                     encryptedTask.append(',');
                 }
-                else if(ch == '-'){
-                    encryptedTask.append('-');
+                else if(ch == '/'){
+                    encryptedTask.append('/');
                 }
                 else if(Character.isDigit(ch)){
                     int dateNum = Character.digit(ch, 10);
@@ -198,8 +191,8 @@ public class Main extends Application {
             for(char ch : taskString.toCharArray()){               
                 if(ch == ','){
                     decryptedTask.append(','); 
-                }else if(ch == '-'){
-                    decryptedTask.append('-');
+                }else if(ch == '/'){
+                    decryptedTask.append('/');
                 }else if(Character.isDigit(ch)){ 
                     int dateNum = Character.digit(ch, 10);
                     if(dateNum >= 3){
