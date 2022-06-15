@@ -64,42 +64,47 @@ public class Task{
         ImageView finStarFour = (ImageView)root.lookup("#finStarFour");
         ImageView finStarFive = (ImageView)root.lookup("#finStarFive");
         
-        if (priority == "One") {
-            finStarOne.setOpacity(1);
-            finStarTwo.setOpacity(.5);
-            finStarThree.setOpacity(.5);
-            finStarFour.setOpacity(.5);
-            finStarFive.setOpacity(.5);
-        } else if (priority == "Two") {
-            finStarOne.setOpacity(1);
-            finStarTwo.setOpacity(1);
-            finStarThree.setOpacity(.5);
-            finStarFour.setOpacity(.5);
-            finStarFive.setOpacity(.5);
-        } else if (priority == "Three") {
-            finStarOne.setOpacity(1);
-            finStarTwo.setOpacity(1);
-            finStarThree.setOpacity(1);
-            finStarFour.setOpacity(.5);
-            finStarFive.setOpacity(.5);
-        } else if (priority == "Four") {
-            finStarOne.setOpacity(1);
-            finStarTwo.setOpacity(1);
-            finStarThree.setOpacity(1);
-            finStarFour.setOpacity(1);
-            finStarFive.setOpacity(.5);
-        } else if (priority == "Five") {
-            finStarOne.setOpacity(1);
-            finStarTwo.setOpacity(1);
-            finStarThree.setOpacity(1);
-            finStarFour.setOpacity(1);
-            finStarFive.setOpacity(1);
-        } else {
-            System.out.println("nothing");
-        }
-                
+        setStarOpacity(priority, finStarOne, finStarTwo, finStarThree, finStarFour, finStarFive);
+           
         return root;        
     }
+    
+    public static void setStarOpacity(String priority, ImageView one, ImageView two, ImageView three, ImageView four, ImageView five){
+    if (priority == "One") {
+        one.setOpacity(1);
+        two.setOpacity(.5);
+        three.setOpacity(.5);
+        four.setOpacity(.5);
+        five.setOpacity(.5);
+    } else if (priority == "Two") {
+        one.setOpacity(1);
+        two.setOpacity(1);
+        three.setOpacity(.5);
+        four.setOpacity(.5);
+        five.setOpacity(.5);
+    } else if (priority == "Three") {
+        one.setOpacity(1);
+        two.setOpacity(1);
+        three.setOpacity(1);
+        four.setOpacity(.5);
+        five.setOpacity(.5);
+    } else if (priority == "Four") {
+        one.setOpacity(1);
+        two.setOpacity(1);
+        three.setOpacity(1);
+        four.setOpacity(1);
+        five.setOpacity(.5);
+    } else if (priority == "Five") {
+        one.setOpacity(1);
+        two.setOpacity(1);
+        three.setOpacity(1);
+        four.setOpacity(1);
+        five.setOpacity(1);
+    } 
+}
+
+    
+
     
     
 }

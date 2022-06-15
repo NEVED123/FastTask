@@ -51,16 +51,6 @@ public class addTaskMenuController  {
     public ImageView ratingFour;
     @FXML
     public ImageView ratingFive;
-    @FXML
-    public ImageView finStarOne;
-    @FXML
-    public ImageView finStarTwo;
-    @FXML
-    public ImageView finStarThree;
-    @FXML
-    public ImageView finStarFour;
-    @FXML
-    public ImageView finStarFive;
 
     public Stage stage;
     private Scene scene;
@@ -162,41 +152,10 @@ public class addTaskMenuController  {
         starClicked = "Five";
     }
     
-    public void mouseReleased () {
-        System.out.println(starClicked);
-        if (starClicked == "One") {
-            ratingOne.setOpacity(1);
-            ratingTwo.setOpacity(.5);
-            ratingThree.setOpacity(.5);
-            ratingFour.setOpacity(.5);
-            ratingFive.setOpacity(.5);
-        } else if (starClicked == "Two") {
-            ratingOne.setOpacity(1);
-            ratingTwo.setOpacity(1);
-            ratingThree.setOpacity(.5);
-            ratingFour.setOpacity(.5);
-            ratingFive.setOpacity(.5);
-        } else if (starClicked == "Three") {
-            ratingOne.setOpacity(1);
-            ratingTwo.setOpacity(1);
-            ratingThree.setOpacity(1);
-            ratingFour.setOpacity(.5);
-            ratingFive.setOpacity(.5);
-        } else if (starClicked == "Four") {
-            ratingOne.setOpacity(1);
-            ratingTwo.setOpacity(1);
-            ratingThree.setOpacity(1);
-            ratingFour.setOpacity(1);
-            ratingFive.setOpacity(.5);
-        } else if (starClicked == "Five") {
-            ratingOne.setOpacity(1);
-            ratingTwo.setOpacity(1);
-            ratingThree.setOpacity(1);
-            ratingFour.setOpacity(1);
-            ratingFive.setOpacity(1);
-        } 
-        
+    public void mouseReleased() {
+        Task.setStarOpacity(starClicked, ratingOne, ratingTwo, ratingThree, ratingFour, ratingFive);
     }
+    
     
     private void storeTask(String taskName, String owner, String category, String date, int count, String priority) throws IOException{
         //Main.decrypt();
