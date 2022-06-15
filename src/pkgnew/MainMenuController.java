@@ -26,7 +26,7 @@ public class MainMenuController {
     private Parent root;    
 
     @FXML
-    public FlowPane todo;
+    FlowPane todo;
     @FXML
     FlowPane doing;
     @FXML
@@ -42,37 +42,50 @@ public class MainMenuController {
         stage.show(); 
     }
     
-    public void finalizeTask(String taskName, String owner, String category, String date, int count, String due, String priority) throws IOException {
-        //get text from text fields,
-        //store them in variables
-        
+    public void finalizeTask(String taskName, String owner, String category, String date, int count, String due, String priority) throws IOException {   
         Main.todoList.add(new Task(taskName, owner, category, date, count, due, priority)); //placeholder args
         for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); //must call getTask on each task class
         }
     }
     
-       public void move(ActionEvent event) throws IOException {
+    public void deleteTask(ActionEvent event) throws IOException {
         System.out.println("button pressed");
         Button source1 = (Button)event.getSource(); //yields complete string
         String id = source1.getId();
         //String source2 = event.getPickResult().getIntersectedNode().getId(); //returns JUST the id of the object that was clicked
-        System.out.println("source: " + source1);
-        System.out.println("Just the id: " + id);
+        System.out.println("id: " + id);
        
         System.out.println(Main.todoList);
-        //System.out.println(" " + source2); 
+        Task taskToMove = new Task("", "", "", "", -1, "", "");
         int x = Integer.parseInt(id);
         for (Task task : Main.todoList) {
             if (task.count == x){
-                Main.todoList.remove(task.getTask());
+                taskToMove = task;
             }
-            
         }
+        
+        Main.todoList.remove(taskToMove);
+        System.out.println(Main.todoList);
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        root = loader.load();
+        MainMenuController mainMenuController = loader.getController();
+        mainMenuController.displayTasks();
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
         
     }     
     
-    public void displayTasks() throws IOException{   
+    public void displayTasks() throws IOException{         
+        todo.getChildren().clear();
+        doing.getChildren().clear();
+        done.getChildren().clear();
+        today.getChildren().clear();
+        
         for(Task task : Main.todoList){
             todo.getChildren().add(task.getTask()); 
         }
