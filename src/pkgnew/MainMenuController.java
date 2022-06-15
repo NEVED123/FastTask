@@ -50,19 +50,17 @@ public class MainMenuController {
     }
     
     public void deleteTask(ActionEvent event) throws Exception {
-        System.out.println("button pressed");
+
         Button deleteBtn = (Button)event.getSource(); //yields complete string
-        String id = deleteBtn.getParent().getId();
+        String taskId = deleteBtn.getParent().getId();
         
         //cursed code gets the column
         String columnId = deleteBtn.getParent().getParent().getParent().getId();
-       
-        System.out.println("id: " + id);
         
         ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);        
        
         Task taskToMove = new Task("", "", "", "", -1, "", "");
-        int x = Integer.parseInt(id);
+        int x = Integer.parseInt(taskId);
         for (Task task : listToUpdate) {
             if (task.count == x){
                 taskToMove = task;
@@ -74,12 +72,13 @@ public class MainMenuController {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
         root = loader.load();
-        MainMenuController mainMenuController = loader.getController();
-        mainMenuController.displayTasks();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+        
+        MainMenuController mainMenuController = loader.getController();
+        mainMenuController.displayTasks();
      
     }
     

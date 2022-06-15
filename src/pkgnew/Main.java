@@ -99,11 +99,11 @@ public class Main extends Application {
         columnKey.put("done", doneList);
         columnKey.put("today", todayList); //only accessed when editing methods
         
-        //decrypt();
+        decrypt();
         
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
 
-        //encrypt();
+        encrypt();
 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
