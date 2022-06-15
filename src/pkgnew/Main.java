@@ -31,7 +31,7 @@ public class Main extends Application {
     public static final String path = System.getProperty("user.home") + "\\FastTask\\fasttask.txt";
     public static final String countPath = System.getProperty("user.home") + "\\FastTask\\count.txt";;
     public static int shift = 3;
-    public static int totalCount = 0;
+    public static int totalCount;
   
     /**
      *
@@ -74,7 +74,17 @@ public class Main extends Application {
             catch(Exception e){
                 e.getStackTrace();
             }
-        }        
+        }
+        else{
+            try{
+                getTotalCount();
+            }
+            catch(Exception e){
+                FileWriter resetCountFile = new FileWriter(countPath);
+                resetCountFile.write("0");
+                resetCountFile.close();
+            }
+        }
         
         //we have a the FastTask folder and an existing txt file, now we must load info from the document
         
@@ -118,8 +128,8 @@ public class Main extends Application {
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
         }
-        
-        totalCount = getTotalCount();
+
+        totalCount = getTotalCount();            
 
         Parent root;
          
@@ -236,7 +246,7 @@ public class Main extends Application {
         decryptedTaskWriter.close();
     }
    
-    //DOES NOT MOVE COLUMNS YET, WE WILL GET THERE
+    //THIS METHOD WILL BE REWRITTEN BY SEARCHING FOR COUNT
     public static void updateTask(Task targetTask, Task updatedTask) throws Exception{
         decrypt();
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
@@ -273,7 +283,6 @@ public class Main extends Application {
     
     public static int getTotalCount() throws Exception{
         ArrayList<String> countString = (ArrayList)Files.readAllLines(Paths.get(countPath));
-        System.out.println(countString);
         return Integer.parseInt(countString.get(0));
     }
     
