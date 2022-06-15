@@ -27,10 +27,11 @@ public class Main extends Application {
     public static ArrayList<Task> doingList;
     public static ArrayList<Task> doneList;
     public static ArrayList<Task> todayList;
-    private static File directory;
-    public static String path;
+    private static final File directory = new File(System.getProperty("user.home") + "\\FastTask");
+    public static final String path = System.getProperty("user.home") + "\\FastTask\\fasttask.txt";
+    public static final String countPath = System.getProperty("user.home") + "\\FastTask\\count.txt";;
     public static int shift = 3;
-    public static int count = 0;
+    public static int totalCount = 0;
   
     /**
      *
@@ -46,8 +47,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         //create folder C:\FastTask
-        directory = new File(System.getProperty("user.home") + "\\FastTask");
-        path = System.getProperty("user.home") + "\\FastTask\\fasttask.txt";
         if (!directory.exists()) {
             try{
                 directory.mkdir();
@@ -56,8 +55,8 @@ public class Main extends Application {
                 e.getStackTrace();
             }
         }       
-        File file = new File(path);
-        if(!file.exists()){
+        File fasttasktxt = new File(path);
+        if(!fasttasktxt.exists()){
             try{
                 FileWriter createFile = new FileWriter(path);
             }
@@ -65,6 +64,18 @@ public class Main extends Application {
                 e.getStackTrace();
             }
         }
+        File counttxt = new File(countPath);
+        if(!counttxt.exists()){
+            try{
+                FileWriter createCountFile = new FileWriter(countPath);
+                createCountFile.write("0");
+                createCountFile.close();
+            }
+            catch(Exception e){
+                e.getStackTrace();
+            }
+        }        
+        
         //we have a the FastTask folder and an existing txt file, now we must load info from the document
         
         todoList = new ArrayList<>();
@@ -107,6 +118,8 @@ public class Main extends Application {
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
         }
+        
+        totalCount = getTotalCount();
 
         Parent root;
          
@@ -258,7 +271,18 @@ public class Main extends Application {
         encrypt();
     }
     
+    public static int getTotalCount() throws Exception{
+        ArrayList<String> countString = (ArrayList)Files.readAllLines(Paths.get(countPath));
+        System.out.println(countString);
+        return Integer.parseInt(countString.get(0));
+    }
     
+    public static void incrementTotalCount() throws Exception{
+        totalCount++;
+        FileWriter totalCountIncrementer = new FileWriter(countPath);
+        totalCountIncrementer.write(String.valueOf(totalCount));
+        totalCountIncrementer.close();
+    }
     
     
 }

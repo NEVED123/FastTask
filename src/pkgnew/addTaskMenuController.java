@@ -77,12 +77,12 @@ public class addTaskMenuController  {
 
         MainMenuController mainMenuController = loader.getController();
         
-        mainMenuController.finalizeTask(taskName, owner, category, date, Main.count, due, priority); 
-        Main.count++;
+        mainMenuController.finalizeTask(taskName, owner, category, date, Main.totalCount, due, priority); 
+        Main.incrementTotalCount();
         
         //NOTE: DUE IS NOT STORED ON LOCAL MACHINE, AS IT DIFFERS FROM DAY TO DAY.
         //RATHER, IT IS GENERATED BASED ON THE DATE OF THE TASK.
-        storeTask(Main.count, taskName, owner, category, date, priority);
+        storeTask(Main.totalCount, taskName, owner, category, date, priority);
         
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
