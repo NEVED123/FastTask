@@ -70,7 +70,7 @@ public class addTaskMenuController  {
         else
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //converts LocalDate -> String
         
-         LocalDate rightNow = LocalDate.now(); //local date class
+        LocalDate rightNow = LocalDate.now(); //local date class
         String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //creating a string format class for THE local date (now)
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH); //creating an object using the same string format class idea as before for the local date (probably won't need)
 
@@ -92,8 +92,8 @@ public class addTaskMenuController  {
                 due = "Due in: " + (String.valueOf(dueDateConversion)) + " Days!"; //having the FXML line 'due' spit out "Due in: _____ Days!"
             System.out.println(timeInDays); //printing in console
             System.out.println(dateSubtraction); //printing in console -> shows milliseconds in how many days
-            System.out.println(dueDateConversion); //printing in console
-            //System.out.println(dueDateConvers); //printing in console
+            System.out.println(dueDateConversion);
+            //System.out.println(dueDateConvers);
         }
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
@@ -112,10 +112,9 @@ public class addTaskMenuController  {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
     }
     
-        public void goBack(ActionEvent event) throws IOException{
+    public void goBack(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();
         MainMenuController mainMenuController = loader.getController();

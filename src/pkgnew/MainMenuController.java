@@ -54,16 +54,16 @@ public class MainMenuController {
     
         public void revert()throws IOException{
         for(Task task : Main.todoList){
-            todo.getChildren().add(task.getTask()); //must call getTask on each task class
+            todo.getChildren().add(task.getTask()); 
         }
          for(Task task : Main.doingList){
-            doing.getChildren().add(task.getTask()); //must call getTask on each task class
+            doing.getChildren().add(task.getTask()); 
         }
           for(Task task : Main.doneList){
-            done.getChildren().add(task.getTask()); //must call getTask on each task class
+            done.getChildren().add(task.getTask()); 
         }
            for(Task task : Main.todayList){
-            today.getChildren().add(task.getTask()); //must call getTask on each task class
+            today.getChildren().add(task.getTask()); 
         }
     }
         
@@ -80,7 +80,6 @@ public class MainMenuController {
         int x = Integer.parseInt(id);
         for (Task task : Main.todoList) {
             if (task.count == x){
-                System.out.println("HELLOOOOO");
                 Main.todoList.remove(task.getTask());
             }
             
