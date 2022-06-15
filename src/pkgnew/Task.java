@@ -38,31 +38,32 @@ public class Task{
     }
     
     public Parent getTask() throws IOException {
-        AnchorPane root = FXMLLoader.load(getClass().getResource("finalTask.fxml"));     
+        AnchorPane root = FXMLLoader.load(getClass().getResource("finalTask.fxml"));
+        
         Label taskNameLabel = (Label)root.lookup("#taskName");
         Label ownerLabel = (Label)root.lookup("#ownerLabel");
         Label categoryLabel = (Label)root.lookup("#categoryLabel");
         Label dateLabel = (Label)root.lookup("#ddLabel");
         Button next = (Button)root.lookup("#moveBtn");
-        String newId = "" + count;
-        next.setId(newId);
-        
-        taskNameLabel.setText(taskName);
-        ownerLabel.setText(owner);
-        categoryLabel.setText(category);
-        dateLabel.setText(date);
-        
-        Label dueLabel = (Label)root.lookup("#dueLabel"); //label being correlated with the named label in the scenebuilder fxml
-        dueLabel.setText(due);
-        
+        //label being correlated with the named label in the scenebuilder fxml
+        Label dueLabel = (Label)root.lookup("#dueLabel");
         Label priorityLabel = (Label)root.lookup("#priorityLabel");
-        priorityLabel.setText("Priority Level: " + priority);
-        
         ImageView finStarOne = (ImageView)root.lookup("#finStarOne");
         ImageView finStarTwo = (ImageView)root.lookup("#finStarTwo");
         ImageView finStarThree = (ImageView)root.lookup("#finStarThree");
         ImageView finStarFour = (ImageView)root.lookup("#finStarFour");
         ImageView finStarFive = (ImageView)root.lookup("#finStarFive");
+                
+        taskNameLabel.setText(taskName);
+        ownerLabel.setText(owner);
+        categoryLabel.setText(category);
+        dateLabel.setText(date);
+        
+        String newId = "" + count;
+        next.setId(newId);
+        
+        dueLabel.setText(due);        
+        priorityLabel.setText("Priority Level: " + priority);
         
         setStarOpacity(priority, finStarOne, finStarTwo, finStarThree, finStarFour, finStarFive);
            
