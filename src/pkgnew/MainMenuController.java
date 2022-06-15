@@ -76,9 +76,12 @@ public class MainMenuController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
+     
+    }
+    
+    public void moveTaskForward(ActionEvent event) throws IOException{
         
-    }     
+    }
     
     public void displayTasks() throws IOException{         
         todo.getChildren().clear();
@@ -99,6 +102,8 @@ public class MainMenuController {
             today.getChildren().add(task.getTask()); 
         }
     }
+    
+    
           
        
     /**
