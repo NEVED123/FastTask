@@ -86,19 +86,22 @@ public class Main extends Application {
 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
-            if(split.length == 8 && columnKey.containsKey(split[0])){
+            for(String s : split){
+                System.out.println(s);
+            }
+            if(split.length == 7 && columnKey.containsKey(split[0])){
                 ArrayList columnToAddTo = columnKey.get(split[0]);
-                String taskName = split[1];
-                String owner = split[2];
-                String category = split[3];
-                String date = split[4];
-                String count = split[5];
-                String due = split[6];
-                String priority = split[7];
+                String count = split[1];
+                String taskName = split[2];
+                String owner = split[3];
+                String category = split[4];
+                String date = split[5];
+                String priority = split[6];
                 int taskCount = Integer.parseInt(count);
-                String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));                 
+                String due = "placeholder";                             
+                String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));               
                 columnToAddTo.add(new Task(taskName, owner, category, date, taskCount, due, priority));
-                if(dateNow == date){
+                if(dateNow.contentEquals(date)){
                     todayList.add(new Task(taskName, owner, category, date, taskCount, due, priority));
                 }
             }

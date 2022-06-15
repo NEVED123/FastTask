@@ -6,13 +6,20 @@
 package pkgnew;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -71,39 +78,73 @@ public class Task{
         return root;        
     }
     
-    public static void setStarOpacity(String priority, ImageView one, ImageView two, ImageView three, ImageView four, ImageView five){
-        if (priority == "One") {
+    public static void setStarOpacity(String priority, ImageView one, ImageView two, 
+            ImageView three, ImageView four, ImageView five){
+        if (priority.contentEquals("One")){
             one.setOpacity(1);
             two.setOpacity(.5);
             three.setOpacity(.5);
             four.setOpacity(.5);
             five.setOpacity(.5);
-        } else if (priority == "Two") {
+        } else if (priority.contentEquals("Two")) {
             one.setOpacity(1);
             two.setOpacity(1);
             three.setOpacity(.5);
             four.setOpacity(.5);
             five.setOpacity(.5);
-        } else if (priority == "Three") {
+        } else if (priority.contentEquals("Three")) {
             one.setOpacity(1);
             two.setOpacity(1);
             three.setOpacity(1);
             four.setOpacity(.5);
             five.setOpacity(.5);
-        } else if (priority == "Four") {
+        } else if (priority.contentEquals("Four")) {
             one.setOpacity(1);
             two.setOpacity(1);
             three.setOpacity(1);
             four.setOpacity(1);
             five.setOpacity(.5);
-        } else if (priority == "Five") {
+        } else if (priority.contentEquals("Five")) {
             one.setOpacity(1);
             two.setOpacity(1);
             three.setOpacity(1);
             four.setOpacity(1);
             five.setOpacity(1);
-        } 
+        }
     }
+    
+    public static String generateDueInLabel(String dateString, DatePicker datePicker) throws ParseException{
+        String due;
+        
+        LocalDate rightNow = LocalDate.now(); //local date class
+        String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //creating a string format class for THE local date (now)
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH); //creating an object using the same string format class idea as before for the local date (probably won't need)
+
+        if (datePicker.getValue() == null) { //if datepicker's value that it holds is nothing, then make 'due' string say something
+            due = "Due date is a mystery";
+        }
+        else { 
+            Date datePickerDate = sdf.parse(dateString); //parsing the date that is picked in the date picker and name it 'firstDate'
+            Date currentDate = sdf.parse(formattedNowDate); //parsing the date that is RIGHT NOW and naming it 'secondDate'
+            long dateSubtraction = datePickerDate.getTime() - currentDate.getTime(); //using long and naming is diff, it will equal to the date picker date (firstDate) minus the current local date (secondDate)
+            TimeUnit timeInDays = TimeUnit.DAYS; //create a time unit object using days and naming it time
+            //TimeUnit timeInHours = TimeUnit.HOURS; //May not be needed
+            long dueDateConversion = timeInDays.convert(dateSubtraction, TimeUnit.MILLISECONDS); //a long variable called 'difference' and converting 'diff' (the days) from milliseconds
+            //long dueDateConvers = timeInHours.convert(dateSubtraction, TimeUnit.MILLISECONDS); //May not be needed
+            if ((dueDateConversion) == 1) {
+                due = "Task Is Due In the Next 24 Hours!";
+            }
+            else
+                due = "Due in: " + (String.valueOf(dueDateConversion)) + " Days!"; //having the FXML line 'due' spit out "Due in: _____ Days!"
+            System.out.println(timeInDays); //printing in console
+            System.out.println(dateSubtraction); //printing in console -> shows milliseconds in how many days
+            System.out.println(dueDateConversion);
+            //System.out.println(dueDateConvers);
+        }       
+        
+        return due;
+    }
+    
 
 }
     
