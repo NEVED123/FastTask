@@ -117,9 +117,10 @@ public class addTaskMenuController  {
     public void goBack(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();
-        MainMenuController mainMenuController = loader.getController();
         
-        mainMenuController.revert();
+        MainMenuController mainMenuController = loader.getController();       
+        mainMenuController.displayTasks();
+        
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

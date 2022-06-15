@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 
 /**
  *
@@ -71,41 +72,43 @@ public class Task{
     }
     
     public static void setStarOpacity(String priority, ImageView one, ImageView two, ImageView three, ImageView four, ImageView five){
-    if (priority == "One") {
-        one.setOpacity(1);
-        two.setOpacity(.5);
-        three.setOpacity(.5);
-        four.setOpacity(.5);
-        five.setOpacity(.5);
-    } else if (priority == "Two") {
-        one.setOpacity(1);
-        two.setOpacity(1);
-        three.setOpacity(.5);
-        four.setOpacity(.5);
-        five.setOpacity(.5);
-    } else if (priority == "Three") {
-        one.setOpacity(1);
-        two.setOpacity(1);
-        three.setOpacity(1);
-        four.setOpacity(.5);
-        five.setOpacity(.5);
-    } else if (priority == "Four") {
-        one.setOpacity(1);
-        two.setOpacity(1);
-        three.setOpacity(1);
-        four.setOpacity(1);
-        five.setOpacity(.5);
-    } else if (priority == "Five") {
-        one.setOpacity(1);
-        two.setOpacity(1);
-        three.setOpacity(1);
-        four.setOpacity(1);
-        five.setOpacity(1);
-    } 
+        if (priority == "One") {
+            one.setOpacity(1);
+            two.setOpacity(.5);
+            three.setOpacity(.5);
+            four.setOpacity(.5);
+            five.setOpacity(.5);
+        } else if (priority == "Two") {
+            one.setOpacity(1);
+            two.setOpacity(1);
+            three.setOpacity(.5);
+            four.setOpacity(.5);
+            five.setOpacity(.5);
+        } else if (priority == "Three") {
+            one.setOpacity(1);
+            two.setOpacity(1);
+            three.setOpacity(1);
+            four.setOpacity(.5);
+            five.setOpacity(.5);
+        } else if (priority == "Four") {
+            one.setOpacity(1);
+            two.setOpacity(1);
+            three.setOpacity(1);
+            four.setOpacity(1);
+            five.setOpacity(.5);
+        } else if (priority == "Five") {
+            one.setOpacity(1);
+            two.setOpacity(1);
+            three.setOpacity(1);
+            four.setOpacity(1);
+            five.setOpacity(1);
+        } 
+    }
+
 }
+    
 
     
 
     
-    
-}
+

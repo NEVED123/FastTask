@@ -52,21 +52,6 @@ public class MainMenuController {
         }
     }
     
-        public void revert()throws IOException{
-        for(Task task : Main.todoList){
-            todo.getChildren().add(task.getTask()); 
-        }
-         for(Task task : Main.doingList){
-            doing.getChildren().add(task.getTask()); 
-        }
-          for(Task task : Main.doneList){
-            done.getChildren().add(task.getTask()); 
-        }
-           for(Task task : Main.todayList){
-            today.getChildren().add(task.getTask()); 
-        }
-    }
-        
        public void move(ActionEvent event) throws IOException {
         System.out.println("button pressed");
         Button source1 = (Button)event.getSource(); //yields complete string
@@ -87,6 +72,22 @@ public class MainMenuController {
         
     }     
     
+    public void displayTasks() throws IOException{   
+        for(Task task : Main.todoList){
+            todo.getChildren().add(task.getTask()); 
+        }
+         for(Task task : Main.doingList){
+            doing.getChildren().add(task.getTask()); 
+        }
+          for(Task task : Main.doneList){
+            done.getChildren().add(task.getTask()); 
+        }
+           for(Task task : Main.todayList){
+            today.getChildren().add(task.getTask()); 
+        }
+    }
+          
+       
     /**
      * Initializes the controller class.
      * @param url

@@ -106,31 +106,25 @@ public class Main extends Application {
         }
 
         Parent root;
-        root = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
         
-        FlowPane todoFlowPane = (FlowPane)root.lookup("#todo");
-        FlowPane doingFlowPane = (FlowPane)root.lookup("#doing");
-        FlowPane doneFlowPane = (FlowPane)root.lookup("#done");
-        FlowPane todayFlowPane = (FlowPane)root.lookup("#today");
+//        FlowPane todoFlowPane = (FlowPane)root.lookup("#todo");
+//        FlowPane doingFlowPane = (FlowPane)root.lookup("#doing");
+//        FlowPane doneFlowPane = (FlowPane)root.lookup("#done");
+//        FlowPane todayFlowPane = (FlowPane)root.lookup("#today");
+
+
         
-        for(Task task : todoList){
-            todoFlowPane.getChildren().add(task.getTask());
-        }
-        for(Task task : doingList){
-            doingFlowPane.getChildren().add(task.getTask());
-        }        
-        for(Task task : doneList){
-            doneFlowPane.getChildren().add(task.getTask());
-        }     
-        for(Task task : todayList){
-            todayFlowPane.getChildren().add(task.getTask());
-        } 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
+        root = loader.load();
         
-        Scene scene = new Scene(root);
+        MainMenuController mainMenuController = loader.getController();       
+        mainMenuController.displayTasks();
         
+        Scene scene = new Scene(root);        
         stage.setScene(scene);
-        stage.setTitle("Fast->Task"); //sets text at top of menu
+        stage.setTitle("Fast->Task"); //sets text at top of menu        
         stage.show();
+        
         //THIS IS A CHANGE IN MAIN BRANCH
     }
 
@@ -267,6 +261,7 @@ public class Main extends Application {
         
         encrypt();
     }
+    
     
     
     
