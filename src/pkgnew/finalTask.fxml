@@ -11,7 +11,7 @@
    <children>
       <AnchorPane layoutX="5.0" layoutY="6.0" prefHeight="100.0" prefWidth="290.0">
          <children>
-            <Button fx:id="moveBtn" layoutX="265.0" layoutY="21.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="8.0" prefWidth="22.0" text="*" />
+            <Button fx:id="moveBtn" layoutX="270.0" layoutY="-4.0" mnemonicParsing="false" onAction="#deleteTask" prefHeight="8.0" prefWidth="22.0" text="*" />
             <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="66.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../FastTask/src/fasttask/RatingStar.png" />
