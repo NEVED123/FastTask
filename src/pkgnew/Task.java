@@ -34,6 +34,7 @@ public class Task{
     int count;
     String due;
     String priority;
+    public static final Task BLANK = new Task("", "", "", "", -1, "", "");
     
     public Task(String taskName, String owner, String category, String date, int count, String due, String priority){
         this.taskName = taskName;

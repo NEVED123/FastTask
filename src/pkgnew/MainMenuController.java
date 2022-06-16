@@ -10,7 +10,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -53,13 +52,13 @@ public class MainMenuController {
 
         Button deleteBtn = (Button)event.getSource(); //yields complete string
         String taskId = deleteBtn.getParent().getId();
-        
+
         //cursed code gets the column
         String columnId = deleteBtn.getParent().getParent().getParent().getId();
-        
-        ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);        
-       
-        Task taskToMove = new Task("", "", "", "", -1, "", "");
+
+        ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);
+
+        Task taskToMove = Task.BLANK;
         int x = Integer.parseInt(taskId);
         for (Task task : listToUpdate) {
             if (task.count == x){
@@ -70,20 +69,43 @@ public class MainMenuController {
         listToUpdate.remove(taskToMove);
         Main.deleteStoredTask(taskToMove.count);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
         root = loader.load();
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-        
-        MainMenuController mainMenuController = loader.getController();
-        mainMenuController.displayTasks();
-     
+        addTaskMenuController addTaskController = loader.getController();
+        addTaskController.goBack(event);
     }
     
     public void moveTaskForward(ActionEvent event) throws IOException{
-        
+        Button moveBtn = (Button)event.getSource();
+        String taskId = moveBtn.getParent().getId();
+        String columnId = moveBtn.getParent().getParent().getParent().getId();
+        ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);
+        int x = Integer.parseInt(taskId);
+        Task taskToMove = Task.BLANK;
+        for (Task task : listToUpdate) {
+            if (task.count == x){
+                taskToMove = task;
+            }
+        }
+        if(listToUpdate == Main.todoList){
+            Main.doingList.add(taskToMove);
+            Main.todoList.remove(taskToMove);
+
+        }
+        if(listToUpdate == Main.doingList){
+            Main.doneList.add(taskToMove);
+            Main.doingList.remove(taskToMove);
+
+        }
+        if(listToUpdate == Main.doneList){
+
+            Main.doneList.remove(taskToMove);
+
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
+        root = loader.load();
+        addTaskMenuController addTaskController = loader.getController();
+        addTaskController.goBack(event);
     }
     
     public void displayTasks() throws IOException{         
