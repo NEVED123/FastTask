@@ -92,8 +92,16 @@ public class MainMenuController {
                 taskToMove = task;
             }
         }
+        
+        Task possibleTodayTask = Task.BLANK;
+        for(Task task : Main.todayList){
+            if(task.count == x){
+                possibleTodayTask = task;
+            }
+        }
 
         listToUpdate.remove(taskToMove);
+        Main.todayList.remove(possibleTodayTask);
         Main.deleteStoredTask(taskToMove.count);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));

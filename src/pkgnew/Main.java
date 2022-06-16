@@ -117,7 +117,7 @@ public class Main extends Application {
                 String priority = split[6];
                 int taskCount = Integer.parseInt(count);
                 String due = "placeholder";                             
-                String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));               
+                String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));                
                 columnToAddTo.add(new Task(taskName, owner, category, date, taskCount, due, priority));
                 if(dateNow.contentEquals(date)){
                     todayList.add(new Task(taskName, owner, category, date, taskCount, due, priority));
