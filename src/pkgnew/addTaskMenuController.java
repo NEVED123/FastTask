@@ -66,13 +66,15 @@ public class addTaskMenuController  {
         String date;
         String due = null;
         String priority = starClicked;
+        Date datePickerDate = null;
         if(datePicker.getValue() == null)
             date = "No date selected";
-        else
+        else{
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //converts LocalDate -> String
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
-        Date datePickerDate = sdf.parse(date);
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
+            datePickerDate = sdf.parse(date);
+        }
+
         due = Task.generateDueInLabel(datePickerDate);
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
