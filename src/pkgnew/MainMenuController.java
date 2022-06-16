@@ -76,7 +76,7 @@ public class MainMenuController {
         addTaskController.viewMainMenu(event);
     }
     
-    public void moveTaskForward(ActionEvent event) throws IOException{
+    public void moveTaskForward(ActionEvent event) throws Exception{
         Button moveBtn = (Button)event.getSource();
         String taskId = moveBtn.getParent().getId();
         String columnId = moveBtn.getParent().getParent().getParent().getId();
@@ -91,11 +91,13 @@ public class MainMenuController {
         if(listToUpdate == Main.todoList){
             Main.doingList.add(taskToMove);
             Main.todoList.remove(taskToMove);
+            Main.moveStoredTask(taskToMove.count, "doing");
 
         }
         if(listToUpdate == Main.doingList){
             Main.doneList.add(taskToMove);
             Main.doingList.remove(taskToMove);
+            Main.moveStoredTask(taskToMove.count, "done");
 
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
@@ -104,7 +106,7 @@ public class MainMenuController {
         addTaskController.viewMainMenu(event);
     }
     
-    public void moveTaskBack(ActionEvent event) throws IOException{
+    public void moveTaskBack(ActionEvent event) throws Exception{
         Button moveBtn = (Button)event.getSource();
         String taskId = moveBtn.getParent().getId();
         String columnId = moveBtn.getParent().getParent().getParent().getId();
@@ -119,12 +121,13 @@ public class MainMenuController {
         if(listToUpdate == Main.doingList){
             Main.todoList.add(taskToMove);
             Main.doingList.remove(taskToMove);
+            Main.moveStoredTask(taskToMove.count, "todo");
 
         }
         if(listToUpdate == Main.doneList){
             Main.doingList.add(taskToMove);
             Main.doneList.remove(taskToMove);
-
+            Main.moveStoredTask(taskToMove.count, "doing");
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
         root = loader.load();

@@ -244,37 +244,22 @@ public class Main extends Application {
     }
    
     //THIS METHOD WILL BE REWRITTEN BY SEARCHING FOR COUNT
-    public static void updateTask(Task targetTask, Task updatedTask) throws Exception{
+    public static void moveStoredTask(int taskCount, String newColumn) throws Exception{
         decrypt();
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
         FileWriter clearer = new FileWriter(path, false);
         clearer.write("");
-        FileWriter taskWriter = new FileWriter(path, true);
+        clearer.close();
+        FileWriter taskWriter = new FileWriter(path, true); 
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
-            if(split.length == 5){
-                String column = split[0];
-                String taskName = split[1];
-                String owner = split[2];
-                String category = split[3];
-                String date = split[4];
-                //SEARCH BY COLUMN AND PRIORITY WHEN POSSIBLE
-                if(taskName == targetTask.taskName 
-                        && owner == targetTask.owner 
-                        && category == targetTask.category
-                        && date == targetTask.date){
-                    taskWriter.append(column + "," 
-                            + updatedTask.taskName + "," 
-                            + updatedTask.owner + "," 
-                            + updatedTask.category + "," 
-                            + updatedTask.date + "\n");
-                }
-                else{
-                    taskWriter.append(taskString);
-                }
+            int currentTaskCount = Integer.parseInt(split[1]);
+            if(currentTaskCount == taskCount){
+                taskWriter.write(newColumn + "," + split[1] + "," + split[2] + "," 
+                        + split[3] + "," + split[4] + "," + split[5] + "," + split[6]);
             }
         }
-        
+        taskWriter.close();
         encrypt();
     }
     
