@@ -73,7 +73,7 @@ public class Task{
         //deleteBtn.setId(newId); //will be able to get rid of this line
         
         dueLabel.setText(due);        
-        priorityLabel.setText("Priority Level: " + priority);
+        priorityLabel.setText("Priority Level: \n" + priority);
         
         setStarOpacity(priority, finStarOne, finStarTwo, finStarThree, finStarFour, finStarFive);
            
@@ -117,34 +117,35 @@ public class Task{
         }
     }
     
-    public static String generateDueInLabel(String dateString, DatePicker datePicker) throws ParseException{
+    public static String generateDueInLabel(Date date) throws ParseException{
         String due;
-        
         LocalDate rightNow = LocalDate.now(); //local date class
-        String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //creating a string format class for THE local date (now)
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH); //creating an object using the same string format class idea as before for the local date (probably won't need)
-
-        if (datePicker.getValue() == null) { //if datepicker's value that it holds is nothing, then make 'due' string say something
-            due = "Due date is a mystery";
+        System.out.println(rightNow);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
+        String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //Makes the localDate into a string
+        
+        if (date == null) {
+            due = "";
         }
-        else { 
-            Date datePickerDate = sdf.parse(dateString); //parsing the date that is picked in the date picker and name it 'firstDate'
-            Date currentDate = sdf.parse(formattedNowDate); //parsing the date that is RIGHT NOW and naming it 'secondDate'
-            long dateSubtraction = datePickerDate.getTime() - currentDate.getTime(); //using long and naming is diff, it will equal to the date picker date (firstDate) minus the current local date (secondDate)
-            TimeUnit timeInDays = TimeUnit.DAYS; //create a time unit object using days and naming it time
-            //TimeUnit timeInHours = TimeUnit.HOURS; //May not be needed
-            long dueDateConversion = timeInDays.convert(dateSubtraction, TimeUnit.MILLISECONDS); //a long variable called 'difference' and converting 'diff' (the days) from milliseconds
-            //long dueDateConvers = timeInHours.convert(dateSubtraction, TimeUnit.MILLISECONDS); //May not be needed
+        else {
+            Date currentDate = sdf.parse(formattedNowDate);
+            long dateSubtraction = date.getTime() - currentDate.getTime();
+            TimeUnit timeInDays = TimeUnit.DAYS;
+            long dueDateConversion = timeInDays.convert(dateSubtraction, TimeUnit.MILLISECONDS);
             if ((dueDateConversion) == 1) {
                 due = "Task Is Due In the Next 24 Hours!";
             }
-            else
-                due = "Due in: " + (String.valueOf(dueDateConversion)) + " Days!"; //having the FXML line 'due' spit out "Due in: _____ Days!"
-            System.out.println(timeInDays); //printing in console
-            System.out.println(dateSubtraction); //printing in console -> shows milliseconds in how many days
-            System.out.println(dueDateConversion);
-            //System.out.println(dueDateConvers);
-        }       
+            else if(dueDateConversion == 0){
+                due = "Task is due today!"; //having the FXML line 'due' spit out "Due in: _____ Days!"
+            }
+            else if(dueDateConversion > 1){
+                due = "Due in: " + (String.valueOf(dueDateConversion)) + " Days!";
+            }
+            else{ 
+                due = "Task was due " + Math.abs(dueDateConversion) + " Days ago!";
+            }
+                
+        }
         
         return due;
     }

@@ -71,7 +71,9 @@ public class addTaskMenuController  {
         else
             date = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //converts LocalDate -> String
         
-        due = Task.generateDueInLabel(date, datePicker);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
+        Date datePickerDate = sdf.parse(date);
+        due = Task.generateDueInLabel(datePickerDate);
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();	    

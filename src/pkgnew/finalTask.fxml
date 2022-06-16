@@ -57,27 +57,27 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <ImageView fx:id="finStarOne" fitHeight="18.0" fitWidth="22.0" layoutX="167.0" layoutY="35.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="finStarOne" fitHeight="18.0" fitWidth="22.0" layoutX="163.0" layoutY="34.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="finStarTwo" fitHeight="18.0" fitWidth="22.0" layoutX="184.25" layoutY="35.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="finStarTwo" fitHeight="18.0" fitWidth="22.0" layoutX="180.25" layoutY="34.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="finStarThree" fitHeight="18.0" fitWidth="22.0" layoutX="201.5" layoutY="35.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="finStarThree" fitHeight="18.0" fitWidth="22.0" layoutX="197.5" layoutY="34.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="finStarFour" fitHeight="18.0" fitWidth="22.0" layoutX="218.8" layoutY="35.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="finStarFour" fitHeight="18.0" fitWidth="22.0" layoutX="214.8" layoutY="34.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="finStarFive" fitHeight="18.0" fitWidth="22.0" layoutX="236.0" layoutY="35.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="finStarFive" fitHeight="18.0" fitWidth="22.0" layoutX="232.0" layoutY="34.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@RatingStar.png" />
                </image>
@@ -87,13 +87,13 @@
                   <Font name="System Bold Italic" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="priorityLabel" layoutX="167.0" layoutY="16.0" text="PriorityLabel">
+            <Label fx:id="priorityLabel" layoutX="163.0" layoutY="1.0" text="PriorityLabel">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="fwrdBtn" layoutX="263.0" layoutY="25.0" mnemonicParsing="false" onAction="#moveTaskForward" prefHeight="26.0" prefWidth="30.0" text="-&gt;" />
-            <Button fx:id="backBtn" layoutX="262.0" layoutY="56.0" mnemonicParsing="false" onAction="#moveTaskBack" text="&lt;-" />
+            <Button fx:id="fwrdBtn" layoutX="212.0" layoutY="58.0" mnemonicParsing="false" onAction="#moveTaskForward" prefHeight="26.0" prefWidth="45.0" text="-&gt;" />
+            <Button fx:id="backBtn" layoutX="163.0" layoutY="58.0" mnemonicParsing="false" onAction="#moveTaskBack" prefHeight="26.0" prefWidth="46.0" text="&lt;-" />
          </children>
       </AnchorPane>
    </children>
