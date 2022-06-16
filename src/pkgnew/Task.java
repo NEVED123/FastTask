@@ -49,7 +49,7 @@ public class Task{
     public Parent getTask() throws IOException {
         AnchorPane root = FXMLLoader.load(getClass().getResource("finalTask.fxml"));
         
-        Label taskNameLabel = (Label)root.lookup("#taskName");
+        Label taskNameLabel = (Label)root.lookup("#taskName"); 
         Label ownerLabel = (Label)root.lookup("#ownerLabel");
         Label categoryLabel = (Label)root.lookup("#categoryLabel");
         Label dateLabel = (Label)root.lookup("#ddLabel");

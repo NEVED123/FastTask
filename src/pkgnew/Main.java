@@ -3,13 +3,15 @@ package pkgnew;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -113,14 +115,19 @@ public class Main extends Application {
                 String taskName = split[2];
                 String owner = split[3];
                 String category = split[4];
-                String date = split[5];
+                String stringDate = split[5];
                 String priority = split[6];
                 int taskCount = Integer.parseInt(count);
-                String due = "placeholder";                             
+                
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
+                Date date = sdf.parse(stringDate);                
+                String due = Task.generateDueInLabel(date);
+                
+                columnToAddTo.add(new Task(taskName, owner, category, stringDate, taskCount, due, priority));  
+                
                 String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));                
-                columnToAddTo.add(new Task(taskName, owner, category, date, taskCount, due, priority));
-                if(dateNow.contentEquals(date)){
-                    todayList.add(new Task(taskName, owner, category, date, taskCount, due, priority));
+                if(dateNow.contentEquals(stringDate)){
+                    todayList.add(new Task(taskName, owner, category, stringDate, taskCount, due, priority));
                 }
             }
             //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
@@ -162,7 +169,10 @@ public class Main extends Application {
             StringBuilder encryptedTask = new StringBuilder();
             
             for(char ch : taskString.toCharArray()){
-                if(ch == ','){
+                if(ch == ' '){
+                    encryptedTask.append(' ');
+                }
+                else if(ch == ','){
                     encryptedTask.append(',');
                 }
                 else if(ch == '/'){
@@ -208,8 +218,11 @@ public class Main extends Application {
             
             StringBuilder decryptedTask = new StringBuilder();
             
-            for(char ch : taskString.toCharArray()){               
-                if(ch == ','){
+            for(char ch : taskString.toCharArray()){
+                if(ch == ' '){
+                    decryptedTask.append(' ');
+                }
+                else if(ch == ','){
                     decryptedTask.append(','); 
                 }else if(ch == '/'){
                     decryptedTask.append('/');
@@ -221,7 +234,7 @@ public class Main extends Application {
                         dateNum += 7;
                     }
                     
-                    Character ceasarChar = Character.forDigit(dateNum, 10);  
+                    Character ceasarChar = Character.forDigit(dateNum, 10); 
                     decryptedTask.append(ceasarChar);
                     
                 }else if(Character.isUpperCase(ch)){
@@ -243,7 +256,7 @@ public class Main extends Application {
         decryptedTaskWriter.close();
     }
    
-    //THIS METHOD WILL BE REWRITTEN BY SEARCHING FOR COUNT
+    //
     public static void moveStoredTask(int taskCount, String newColumn) throws Exception{
         decrypt();
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
