@@ -53,7 +53,6 @@ public class Task{
         Label ownerLabel = (Label)root.lookup("#ownerLabel");
         Label categoryLabel = (Label)root.lookup("#categoryLabel");
         Label dateLabel = (Label)root.lookup("#ddLabel");
-        Button deleteBtn = (Button)root.lookup("#deleteBtn");
         AnchorPane taskPane = (AnchorPane)root.lookup("#taskPane");
         //label being correlated with the named label in the scenebuilder fxml
         Label dueLabel = (Label)root.lookup("#dueLabel");

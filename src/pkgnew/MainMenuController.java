@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -97,8 +98,31 @@ public class MainMenuController {
             Main.doingList.remove(taskToMove);
 
         }
-        if(listToUpdate == Main.doneList){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
+        root = loader.load();
+        addTaskMenuController addTaskController = loader.getController();
+        addTaskController.viewMainMenu(event);
+    }
+    
+    public void moveTaskBack(ActionEvent event) throws IOException{
+        Button moveBtn = (Button)event.getSource();
+        String taskId = moveBtn.getParent().getId();
+        String columnId = moveBtn.getParent().getParent().getParent().getId();
+        ArrayList<Task> listToUpdate = Main.columnKey.get(columnId);
+        int x = Integer.parseInt(taskId);
+        Task taskToMove = Task.BLANK;
+        for (Task task : listToUpdate) {
+            if (task.count == x){
+                taskToMove = task;
+            }
+        }
+        if(listToUpdate == Main.doingList){
+            Main.todoList.add(taskToMove);
+            Main.doingList.remove(taskToMove);
 
+        }
+        if(listToUpdate == Main.doneList){
+            Main.doingList.add(taskToMove);
             Main.doneList.remove(taskToMove);
 
         }
@@ -114,17 +138,38 @@ public class MainMenuController {
         done.getChildren().clear();
         today.getChildren().clear();
         
-        for(Task task : Main.todoList){
-            todo.getChildren().add(task.getTask()); 
+        for(Task task : Main.todoList){           
+            Parent taskPane = task.getTask();
+            Button backBtn = (Button)taskPane.lookup("#backBtn");            
+            backBtn.setDisable(true);
+            todo.getChildren().add(taskPane); 
         }
         for(Task task : Main.doingList){
-            doing.getChildren().add(task.getTask()); 
+            Parent taskPane = task.getTask();
+            doing.getChildren().add(taskPane); 
         }
         for(Task task : Main.doneList){
-            done.getChildren().add(task.getTask()); 
+            Parent taskPane = task.getTask();
+            Button fwrdBtn = (Button)taskPane.lookup("#fwrdBtn");
+            fwrdBtn.setDisable(true);
+            done.getChildren().add(taskPane); 
         }
         for(Task task : Main.todayList){
-            today.getChildren().add(task.getTask()); 
+            Parent taskPane = task.getTask();
+            Button moveForward = (Button)taskPane.lookup("#deleteBtn");
+            Button deleteBtn = (Button)taskPane.lookup("#deleteBtn");
+            Button backBtn = (Button)taskPane.lookup("#backBtn");
+            
+            moveForward.setDisable(true);
+            deleteBtn.setDisable(true);
+            backBtn.setDisable(true);
+            
+            moveForward.setOpacity(0);
+            deleteBtn.setOpacity(0);
+            backBtn.setOpacity(0);
+            //deleteBtn, fwrdBtn, backBtn
+            
+            today.getChildren().add(taskPane); 
         }
     }
     
