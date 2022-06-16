@@ -20,6 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import static pkgnew.Main.todayList;
 
 
 /**
@@ -73,11 +74,17 @@ public class addTaskMenuController  {
         due = Task.generateDueInLabel(date, datePicker);
 		
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
-        root = loader.load();	
-
-        MainMenuController mainMenuController = loader.getController();
+        root = loader.load();	    
         
-        mainMenuController.finalizeTask(taskName, owner, category, date, Main.totalCount, due, priority); 
+        Main.todoList.add(new Task(taskName, owner, category, date, Main.totalCount, due, priority)); //placeholder args
+        
+        String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));               
+        if(dateNow.contentEquals(date)){
+            todayList.add(new Task(taskName, owner, category, date, Main.totalCount, due, priority));
+        }  
+        
+        viewMainMenu(event);
+        
         Main.incrementTotalCount();
         
         //NOTE: DUE IS NOT STORED ON LOCAL MACHINE, AS IT DIFFERS FROM DAY TO DAY.

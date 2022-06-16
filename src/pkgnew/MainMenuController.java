@@ -45,35 +45,6 @@ public class MainMenuController {
         stage.show(); 
     }
     
-    public void finalizeTask(String taskName, String owner, String category, String date, int count, String due, String priority) throws IOException {   
-        Main.todoList.add(new Task(taskName, owner, category, date, count, due, priority)); //placeholder args
-        for(Task task : Main.todoList){
-            Parent taskPane = task.getTask();
-            Button backBtn = (Button)taskPane.lookup("#backBtn");            
-            backBtn.setDisable(true);
-            todo.getChildren().add(taskPane); 
-        }
-        
-        String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));               
-        if(dateNow.contentEquals(date)){
-            todayList.add(new Task(taskName, owner, category, date, count, due, priority));
-            for(Task task : Main.todayList){
-                Parent taskPane = task.getTask();
-                Button moveForward = (Button)taskPane.lookup("#fwrdBtn");
-                Button backBtn = (Button)taskPane.lookup("#backBtn");
-
-                moveForward.setDisable(true);
-                backBtn.setDisable(true);
-
-                moveForward.setOpacity(0);
-                backBtn.setOpacity(0);
-                //deleteBtn, fwrdBtn, backBtn
-
-                today.getChildren().add(taskPane);                
-            }
- 
-        }       
-    }
     
     public void deleteTask(ActionEvent event) throws Exception {
 
