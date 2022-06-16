@@ -90,7 +90,7 @@ public class addTaskMenuController  {
         stage.show();
     }
     
-    public void goBack(ActionEvent event) throws IOException{
+    public void viewMainMenu(ActionEvent event) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
         root = loader.load();
         

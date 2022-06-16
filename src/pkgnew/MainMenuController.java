@@ -72,7 +72,7 @@ public class MainMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
         root = loader.load();
         addTaskMenuController addTaskController = loader.getController();
-        addTaskController.goBack(event);
+        addTaskController.viewMainMenu(event);
     }
     
     public void moveTaskForward(ActionEvent event) throws IOException{
@@ -105,7 +105,7 @@ public class MainMenuController {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
         root = loader.load();
         addTaskMenuController addTaskController = loader.getController();
-        addTaskController.goBack(event);
+        addTaskController.viewMainMenu(event);
     }
     
     public void displayTasks() throws IOException{         
