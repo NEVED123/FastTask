@@ -130,7 +130,8 @@ public class Main extends Application {
                     todayList.add(new Task(taskName, owner, category, stringDate, taskCount, due, priority));
                 }
             }
-            //else System.out.println(split.length); //ELSE STATEMENT FOR DEBUG
+            else System.out.println(taskString); //ELSE STATEMENT FOR DEBUG
+            
         }
 
         totalCount = getTotalCount();            
@@ -260,6 +261,7 @@ public class Main extends Application {
     public static void moveStoredTask(int taskCount, String newColumn) throws Exception{
         decrypt();
         ArrayList<String> taskStrings = (ArrayList)Files.readAllLines(Paths.get(path));
+        System.out.println(taskStrings);
         FileWriter clearer = new FileWriter(path, false);
         clearer.write("");
         clearer.close();
@@ -267,9 +269,15 @@ public class Main extends Application {
         for(String taskString : taskStrings){
             String[] split = taskString.split(",");
             int currentTaskCount = Integer.parseInt(split[1]);
+            System.out.println(currentTaskCount);
+            System.out.println(taskCount);
+            System.out.println(totalCount);
             if(currentTaskCount == taskCount){
                 taskWriter.write(newColumn + "," + split[1] + "," + split[2] + "," 
-                        + split[3] + "," + split[4] + "," + split[5] + "," + split[6]);
+                        + split[3] + "," + split[4] + "," + split[5] + "," + split[6] + "\n");
+            }
+            else{
+                taskWriter.write(taskString + "\n");
             }
         }
         taskWriter.close();

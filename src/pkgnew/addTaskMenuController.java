@@ -74,9 +74,7 @@ public class addTaskMenuController  {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
         Date datePickerDate = sdf.parse(date);
         due = Task.generateDueInLabel(datePickerDate);
-		
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainMenu.fxml"));	
-        root = loader.load();	    
+ 
         
         Main.todoList.add(new Task(taskName, owner, category, date, Main.totalCount, due, priority)); //placeholder args
         
@@ -87,16 +85,13 @@ public class addTaskMenuController  {
         
         viewMainMenu(event);
         
+        storeTask(Main.totalCount, taskName, owner, category, date, priority);     
+        
         Main.incrementTotalCount();
         
         //NOTE: DUE IS NOT STORED ON LOCAL MACHINE, AS IT DIFFERS FROM DAY TO DAY.
         //RATHER, IT IS GENERATED BASED ON THE DATE OF THE TASK.
-        storeTask(Main.totalCount, taskName, owner, category, date, priority);
-        
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+         
     }
     
     public void viewMainMenu(ActionEvent event) throws IOException{

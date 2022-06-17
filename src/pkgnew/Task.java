@@ -120,7 +120,7 @@ public class Task{
     public static String generateDueInLabel(Date date) throws ParseException{
         String due;
         LocalDate rightNow = LocalDate.now(); //local date class
-        System.out.println(rightNow);
+        //System.out.println(rightNow);
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy" , Locale.ENGLISH);
         String formattedNowDate = rightNow.format(DateTimeFormatter.ofPattern("MM/dd/yyyy")); //Makes the localDate into a string
         
