@@ -17,15 +17,15 @@
                <font>
                   <Font name="Tahoma Bold" size="13.0" />
                </font></Label>
-            <Label layoutX="324.0" layoutY="53.0" text="Doing" textFill="#c6bf33">
+            <Label layoutX="338.0" layoutY="53.0" text="Doing" textFill="#c6bf33">
                <font>
                   <Font name="Tahoma Bold" size="13.0" />
                </font></Label>
-            <Label layoutX="620.0" layoutY="52.0" text="Done" textFill="#358f1e">
+            <Label layoutX="662.0" layoutY="52.0" text="Done" textFill="#358f1e">
                <font>
                   <Font name="Tahoma Bold" size="13.0" />
                </font></Label>
-            <Label layoutX="920.0" layoutY="52.0" text="Today" textFill="#e50909">
+            <Label layoutX="979.0" layoutY="52.0" text="Today" textFill="#e50909">
                <font>
                   <Font name="Tahoma Bold" size="13.0" />
                </font></Label>
@@ -53,13 +53,13 @@
                   <FlowPane fx:id="today" layoutY="6.0" prefHeight="630.0" prefWidth="0.0" />
                </content>
             </ScrollPane>
-            <Label layoutX="122.0" layoutY="19.0" text="Task View:" />
-            <RadioButton fx:id="verticalViewBtn" layoutX="210.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeOrientation" selected="true" text="Vertical">
+            <Label layoutX="122.0" layoutY="20.0" text="Task View:" />
+            <RadioButton fx:id="verticalViewBtn" layoutX="199.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeOrientation" selected="true" text="Vertical">
                <toggleGroup>
                   <ToggleGroup fx:id="viewTaskGroup" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="horizontalViewBtn" layoutX="300.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeOrientation" text="Horizontal" toggleGroup="$viewTaskGroup" />
+            <RadioButton fx:id="horizontalViewBtn" layoutX="289.0" layoutY="20.0" mnemonicParsing="false" onAction="#changeOrientation" text="Horizontal" toggleGroup="$viewTaskGroup" />
           </children>
       </AnchorPane>
    </children>
