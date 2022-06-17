@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1255.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.MainMenuController">
+<AnchorPane id="AnchorPane" prefHeight="725.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pkgnew.MainMenuController">
    <children>
-      <AnchorPane id="AnchorPane" layoutY="6.0" prefHeight="0.0" prefWidth="1250.0">
+      <AnchorPane id="AnchorPane" layoutY="6.0" prefHeight="0.0" prefWidth="1309.0">
           <children>
               <Label fx:id="label" layoutX="21.0" layoutY="52.0" minHeight="16" minWidth="69" text="To do">
                <font>
@@ -31,24 +31,24 @@
                <font>
                   <Font name="Verdana" size="12.0" />
                </font></Button>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="15.0" layoutY="75.0" prefHeight="630.0" prefWidth="300.0" scaleShape="false">
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="15.0" layoutY="75.0" prefHeight="630.0" prefWidth="320.0" scaleShape="false">
                <content>
-                  <FlowPane fx:id="todo" orientation="VERTICAL" prefHeight="630.0" prefWidth="300.0" />
+                  <FlowPane fx:id="todo" prefHeight="630.0" prefWidth="0.0" />
                </content>
             </ScrollPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="321.0" layoutY="76.0" prefHeight="630.0" prefWidth="300.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="337.0" layoutY="76.0" prefHeight="630.0" prefWidth="320.0">
                <content>
-                  <FlowPane fx:id="doing" layoutX="300.0" orientation="VERTICAL" prefHeight="630.0" prefWidth="660.0" />
+                  <FlowPane fx:id="doing" layoutX="300.0" layoutY="6.0" prefHeight="630.0" prefWidth="0.0" />
                </content>
             </ScrollPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="625.0" layoutY="75.0" prefHeight="630.0" prefWidth="300.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="660.0" layoutY="75.0" prefHeight="630.0" prefWidth="320.0">
                <content>
-                  <FlowPane fx:id="done" orientation="VERTICAL" prefHeight="630.0" prefWidth="300.0" />
+                  <FlowPane fx:id="done" layoutY="6.0" prefHeight="630.0" prefWidth="0.0" />
                </content>
             </ScrollPane>
-            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="930.0" layoutY="75.0" prefHeight="630.0" prefWidth="300.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="982.0" layoutY="75.0" prefHeight="630.0" prefWidth="320.0">
                <content>
-                  <FlowPane fx:id="today" orientation="VERTICAL" prefHeight="630.0" prefWidth="300.0" />
+                  <FlowPane fx:id="today" layoutY="6.0" prefHeight="630.0" prefWidth="0.0" />
                </content>
             </ScrollPane>
           </children>
