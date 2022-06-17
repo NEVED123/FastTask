@@ -117,10 +117,14 @@ public class Main extends Application {
                 String category = split[4];
                 String stringDate = split[5];
                 String priority = split[6];
+                Date date = null;
                 int taskCount = Integer.parseInt(count);
                 
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
-                Date date = sdf.parse(stringDate);                
+                if(!stringDate.contentEquals("No date selected")){
+                   date = sdf.parse(stringDate); 
+                }
+                          
                 String due = Task.generateDueInLabel(date);
                 
                 columnToAddTo.add(new Task(taskName, owner, category, stringDate, taskCount, due, priority));  
