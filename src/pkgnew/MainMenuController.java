@@ -2,20 +2,18 @@
 package pkgnew;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import static pkgnew.Main.todayList;
 
 /**
  * FXML Controller class
@@ -138,6 +136,27 @@ public class MainMenuController {
         root = loader.load();
         addTaskMenuController addTaskController = loader.getController();
         addTaskController.viewMainMenu(event);
+    }
+    
+    public void changeOrientation(ActionEvent event) throws Exception{
+        System.out.println("button pressed");
+        RadioButton btnPressed = (RadioButton)event.getSource();
+        String sourceId = btnPressed.getId();
+        if(sourceId.contentEquals("verticalViewBtn")){
+            //weird flowpane mechanics make this code look backwards
+            todo.setOrientation(Orientation.HORIZONTAL);
+            doing.setOrientation(Orientation.HORIZONTAL);
+            done.setOrientation(Orientation.HORIZONTAL);
+            today.setOrientation(Orientation.HORIZONTAL);             
+        }
+        else{
+            todo.setOrientation(Orientation.VERTICAL);
+            doing.setOrientation(Orientation.VERTICAL);
+            done.setOrientation(Orientation.VERTICAL);
+            today.setOrientation(Orientation.VERTICAL);           
+        }
+        
+        displayTasks();
     }
     
     public void displayTasks() throws IOException{         
