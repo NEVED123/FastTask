@@ -2,6 +2,7 @@
 package pkgnew;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,9 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import static pkgnew.Main.todayList;
 
 /**
  * FXML Controller class
@@ -34,6 +38,10 @@ public class MainMenuController {
     FlowPane done;
     @FXML
     FlowPane today;
+    @FXML
+    DatePicker datePicker;
+    @FXML
+    Label dayLabel;
  
     public void addTask(ActionEvent event) throws IOException {  
         root = FXMLLoader.load(getClass().getResource("AddTaskMenu.fxml"));
@@ -195,6 +203,46 @@ public class MainMenuController {
             
             today.getChildren().add(taskPane); 
         }
+    }
+    
+    public void setDate(ActionEvent event) throws Exception{
+        String newLabel = datePicker.getValue().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
+        dayLabel.setText(newLabel);
+        Main.dateNow = newLabel;
+        newDate();
+        System.out.println(Main.dateNow);
+    }
+    public void newDate() throws IOException{ 
+        //Event event = null;
+        Main.todayList.clear();
+        String dateNow = Main.dateNow;
+
+        for(Task task : Main.todoList){
+            if(dateNow.contentEquals(task.date)){
+                todayList.add(task);
+                System.out.println("Hello");
+            } else {
+            }
+        }
+        for(Task task : Main.doingList){
+            if(dateNow.contentEquals(task.date)){
+            todayList.add(task);
+            System.out.println("Hello");
+        }
+        }
+        for(Task task : Main.doneList){
+            if(dateNow.contentEquals(task.date)){
+            todayList.add(task);
+            System.out.println("Hello");
+        }
+        }
+        //FXMLLoader loader = new FXMLLoader(getClass().getResource("AddTaskMenu.fxml"));
+        //root = loader.load();
+        //addTaskMenuController addTaskController = loader.getController();
+        //addTaskController.viewMainMenu2((ActionEvent) event);
+        displayTasks();
+
+
     }
     
     

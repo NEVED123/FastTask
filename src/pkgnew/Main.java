@@ -24,6 +24,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
     
+    public static String dateNow = LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
     public static ArrayList<Task> todoList;
     public static ArrayList<Task> doingList;
     public static ArrayList<Task> doneList;
