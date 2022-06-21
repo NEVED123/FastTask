@@ -143,7 +143,7 @@ public class MainMenuController {
         RadioButton btnPressed = (RadioButton)event.getSource();
         String sourceId = btnPressed.getId();
         if(sourceId.contentEquals("verticalViewBtn")){
-            //junky flowpane mechanics make this code look backwards
+            //weird flowpane mechanics make this code look backwards
             todo.setOrientation(Orientation.HORIZONTAL);
             doing.setOrientation(Orientation.HORIZONTAL);
             done.setOrientation(Orientation.HORIZONTAL);
